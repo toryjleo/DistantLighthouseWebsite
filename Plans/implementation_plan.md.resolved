@@ -1,0 +1,124 @@
+# Distant Lighthouse Website — Implementation Plan
+
+Build a visually rich single-page React website for Distant Lighthouse, an indie software firm in Mercer, Maine. Site showcases technical depth via WebGL effects (water shader, particle emitters) and polished Framer Motion transitions.
+
+## User Review Required
+
+> [!IMPORTANT]
+> **Tailwind CSS version**: The plan calls for Tailwind CSS. I'll use **Tailwind v4** (latest, CSS-first config). Please confirm or specify v3 if preferred.
+
+> [!IMPORTANT]
+> **Logo asset**: The plan mentions a "high-contrast black/white negative space lighthouse" logo. Do you have an SVG/PNG for this, or should I generate one with the image tool?
+
+> [!IMPORTANT]
+> **Contact info**: The Contact section needs an email and phone number. Please provide the actual values, or I'll use placeholders like `hello@distantlighthouse.com` / `(207) 555-0199`.
+
+---
+
+## Proposed Changes
+
+### Project Scaffolding
+
+#### [NEW] Vite React project (root of `Website/`)
+
+- `npx -y create-vite@latest ./ --template react` inside the `Website/` dir
+- Install deps: `three @react-three/fiber @react-three/drei framer-motion tailwindcss`
+- Configure Tailwind (v4 CSS import or v3 config — pending confirmation)
+- Folder structure:
+  ```
+  src/
+    components/       # React components
+    shaders/          # GLSL shader files
+    assets/           # Logo, images
+    App.jsx
+    main.jsx
+    index.css         # Tailwind base + custom styles
+  ```
+
+---
+
+### Core Visual Features
+
+#### [NEW] `src/components/WaterShader.jsx`
+- R3F `<Canvas>` with a custom `shaderMaterial` using a GLSL fragment shader
+- Dark, reflective water surface
+- `onPointerMove` updates a uniform so the water reacts to mouse position
+- Positioned as a full-width background behind the Hero section
+
+#### [NEW] `src/shaders/water.frag` / `water.vert`
+- Vertex shader passes UVs and time uniform
+- Fragment shader: layered sine waves + Perlin-style noise, dark blue/teal palette, specular highlight that tracks mouse
+
+#### [NEW] `src/components/BubbleEmitters.jsx`
+- R3F particle system using Drei's `<Points>` or instanced meshes
+- Fixed to left and right sidebars (CSS `position: fixed`)
+- `useScroll` or manual scroll listener tracks scroll velocity
+- Particle spawn rate and size scale with scroll speed
+
+#### [NEW] `src/assets/logo.svg` (or generated PNG)
+- High-contrast lighthouse silhouette
+- Used in top banner and Hero
+
+---
+
+### Content Sections
+
+All sections wrapped in Framer Motion `<motion.div>` with viewport-triggered fade/slide animations.
+
+#### [NEW] `src/components/Navbar.jsx`
+- Fixed top bar with logo and smooth-scroll nav links (Hero, Services, About, Contact)
+
+#### [NEW] `src/components/HeroSection.jsx`
+- Full-viewport height
+- Logo + headline ("Guidance through unfamiliar technical waters")
+- Water shader canvas as background
+
+#### [NEW] `src/components/ProblemSolution.jsx`
+- Two-column or split layout
+- **Problem**: spreadsheet breakdown, manual paperwork
+- **Solution**: custom software that fits your workflow
+
+#### [NEW] `src/components/ServicesGrid.jsx`
+- 4-card grid: Custom Internal Tools, iOS/Android Apps, APIs, Embedded Systems
+- Icons or subtle illustrations per card
+- Hover effects with Framer Motion
+
+#### [NEW] `src/components/AboutSection.jsx`
+- 10+ years of experience
+- Mercer, Maine roots
+- Professional but personal tone
+
+#### [NEW] `src/components/ContactSection.jsx`
+- Email + phone CTA
+- Simple form or direct links
+- Footer with copyright
+
+---
+
+### Animation & Polish
+
+- Framer Motion `whileInView` for scroll-triggered section entrances
+- Smooth scrolling via CSS `scroll-behavior: smooth`
+- Responsive layout (mobile-first Tailwind breakpoints)
+- SEO: `<title>`, `<meta description>`, semantic HTML, single `<h1>`
+
+---
+
+## Verification Plan
+
+### Automated (Dev Server)
+1. `npm run dev` — confirm site starts without errors on `localhost:5173`
+2. Check browser console for no React/Three.js warnings
+
+### Browser Visual Review
+1. Open site in browser subagent
+2. Screenshot each section to confirm layout, shader rendering, and particle effects
+3. Scroll to verify bubble emitter reactivity and Framer Motion animations
+4. Resize viewport to check responsive breakpoints
+
+### Manual Verification (User)
+- Review the running site at `localhost:5173` and confirm:
+  - Water shader looks right and responds to mouse
+  - Bubble particles react to scroll speed
+  - Content reads well and matches the company's voice
+  - Mobile layout is acceptable
