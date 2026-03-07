@@ -1,0 +1,27 @@
+Summary,Description,Issue Type,Priority
+"Confirm Tailwind version","Decide Tailwind v3 vs v4 for the project and note any implications in the plan.",Task,High
+"Define logo asset approach","Provide or generate a lighthouse logo (SVG/PNG) and record asset source.",Task,High
+"Provide contact details","Confirm production email and phone values for Contact section.",Task,High
+"Scaffold Vite React project","Create Vite React app in Website root and verify dev server starts.",Task,High
+"Install core dependencies","Add three, @react-three/fiber, @react-three/drei, framer-motion, tailwindcss.",Task,High
+"Set up Tailwind base styles","Configure Tailwind and add base imports in index.css.",Task,High
+"Create project folder structure","Add src/components, src/shaders, src/assets and baseline files.",Task,Medium
+"Add WaterShader component shell","Create WaterShader.jsx with R3F Canvas and shaderMaterial wiring.",Task,High
+"Implement GLSL water shaders","Create water.vert and water.frag with time-based animated water.",Task,High
+"Add mouse interaction uniforms","Wire uMouse and uResolution uniforms into shader pipeline.",Task,Medium
+"Create BubbleEmitters component","Implement particles on one side and mirror to opposite edge.",Task,High
+"Implement scroll-reactive bubbles","Scale spawn rate/size based on scroll velocity with throttling.",Task,Medium
+"Add bubble feature flags","Gate bubbles by breakpoint: desktop full, tablet reduced, mobile off.",Task,High
+"Add bubble fallback borders","When bubbles disabled, render solid or gradient side borders.",Task,Medium
+"Optimize WebGL for mobile","Cap dpr, reduce shader complexity, and add CSS/image fallback.",Task,High
+"Build Navbar component","Fixed top bar with logo and smooth-scroll links.",Task,Medium
+"Build Hero section","Full viewport hero with logo, headline, and water background.",Task,High
+"Build Problem/Solution section","Two-column content describing problem and solution.",Task,Medium
+"Build Services grid","Four-card grid with hover effects and icons/illustrations.",Task,Medium
+"Build About section","Company background and Mercer, Maine roots.",Task,Low
+"Build Contact section","Contact CTA with email/phone and optional form.",Task,High
+"Add Framer Motion animations","Viewport-triggered fades/slides for each section.",Task,Medium
+"Add SEO metadata","Set title, meta description, and semantic structure.",Task,Low
+"Add shader dev workflow toggles","Implement debug outputs and staged shader development path.",Task,Low
+"Manual visual QA","Review sections, shader rendering, animations, responsiveness.",Task,Medium
+"Performance pass","Test on mobile and adjust quality/fallbacks as needed.",Task,High
