@@ -104,6 +104,50 @@ All sections wrapped in Framer Motion `<motion.div>` with viewport-triggered fad
 
 ---
 
+## Shader Language Setup (GLSL)
+
+### GLSL File Layout
+- Keep shaders in `src/shaders/`:
+  - `src/shaders/water.vert`
+  - `src/shaders/water.frag`
+
+### Integration Approach
+- Use `@react-three/fiber` + `drei` `shaderMaterial` to wire uniforms.
+- Import GLSL as raw strings (recommended via Vite plugin) or inline template strings if we want zero plugin config.
+- Expected uniforms:
+  - `uTime` (float)
+  - `uMouse` (vec2)
+  - `uResolution` (vec2)
+
+### Optional Vite GLSL Plugin
+- If you prefer real `.vert/.frag` files, add a Vite plugin to load GLSL (e.g. `vite-plugin-glsl`) and import shaders as strings.
+- If we avoid plugins, we can define shaders as `const vertexShader = \`...\`` directly in `WaterShader.jsx`.
+
+### Shader Dev Workflow
+- Start with a **flat color fragment** to validate the pipeline, then layer waves/noise.
+- Use **time-only animation** first (`uTime`) before adding mouse interaction.
+- Toggle a **debug mode** that outputs UVs or normals as color for fast validation.
+- Add a simple **FPS guard**: if frame time spikes, reduce quality or pause animation on low-end devices.
+
+---
+
+## Mobile Performance Tuning
+
+### Bubble Optimization & Fallbacks
+- Render a **single bubble window** on one side, then **mirror it** for the opposite edge to reduce GPU/CPU work.
+- Implement a **feature flag / breakpoint gate**:
+  - Desktop: full bubbles (mirrored)
+  - Tablet: reduced particle count + capped update rate
+  - Mobile: **disable bubbles entirely**
+- If bubbles are disabled, **fallback to simple solid/gradient side borders** (black or dark teal) with no particle effect.
+
+### WebGL Quality Scaling
+- Cap device pixel ratio (`dpr`) for mobile (e.g., `dpr={[1, 1.5]}` in R3F).
+- Reduce shader complexity on mobile (fewer octaves / noise layers).
+- Provide a **CSS-only background** or static image fallback if WebGL fails or is disabled.
+
+---
+
 ## Verification Plan
 
 ### Automated (Dev Server)
