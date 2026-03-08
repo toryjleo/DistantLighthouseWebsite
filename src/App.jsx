@@ -1,6 +1,22 @@
+import { useState } from 'react'
 import logoMark from './assets/DistantLightHouse1.png'
+import WaterShader from './components/WaterShader'
 
 function App() {
+  const [shaderDebug, setShaderDebug] = useState({
+    paused: false,
+    showUV: false,
+    lowQuality: false,
+    timeScale: 0.65,
+    alpha: 0.95,
+    depth: 0.62,
+    edge: 0.12,
+    height: 0.0,
+    w1Scale: 10.0,
+    w2Scale: 4.0,
+    w3Scale: 16.0,
+  })
+
   const projects = [
     {
       name: 'YBWY',
@@ -58,7 +74,213 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <header className="navbar-scene fixed left-0 right-0 top-0 z-40 border-b border-black/10">
+      {import.meta.env.DEV && (
+        <div className="fixed bottom-6 right-6 z-50 w-72 rounded-lg border border-white/10 bg-black/80 p-4 text-xs text-white/70 backdrop-blur">
+          <p className="mb-3 text-[10px] uppercase tracking-[0.35em] text-white/50">
+            Shader Dev
+          </p>
+          <label className="flex items-center justify-between gap-2">
+            <span>Pause time</span>
+            <input
+              type="checkbox"
+              checked={shaderDebug.paused}
+              onChange={(event) =>
+                setShaderDebug((prev) => ({
+                  ...prev,
+                  paused: event.target.checked,
+                }))
+              }
+            />
+          </label>
+          <label className="mt-2 flex items-center justify-between gap-2">
+            <span>Show UVs</span>
+            <input
+              type="checkbox"
+              checked={shaderDebug.showUV}
+              onChange={(event) =>
+                setShaderDebug((prev) => ({
+                  ...prev,
+                  showUV: event.target.checked,
+                }))
+              }
+            />
+          </label>
+          <label className="mt-2 flex items-center justify-between gap-2">
+            <span>Low quality</span>
+            <input
+              type="checkbox"
+              checked={shaderDebug.lowQuality}
+              onChange={(event) =>
+                setShaderDebug((prev) => ({
+                  ...prev,
+                  lowQuality: event.target.checked,
+                }))
+              }
+            />
+          </label>
+          <div className="mt-4 space-y-3">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-white/50">
+              Surface
+            </p>
+            <label className="flex items-center justify-between gap-3">
+              <span>Time scale</span>
+              <input
+                className="w-32"
+                type="range"
+                min="0.05"
+                max="2"
+                step="0.01"
+                value={shaderDebug.timeScale}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    timeScale: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Alpha</span>
+              <input
+                className="w-32"
+                type="range"
+                min="0.05"
+                max="1"
+                step="0.01"
+                value={shaderDebug.alpha}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    alpha: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Depth</span>
+              <input
+                className="w-32"
+                type="range"
+                min="0.1"
+                max="0.95"
+                step="0.01"
+                value={shaderDebug.depth}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    depth: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Edge</span>
+              <input
+                className="w-32"
+                type="range"
+                min="0.01"
+                max="0.3"
+                step="0.005"
+                value={shaderDebug.edge}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    edge: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Height</span>
+              <input
+                className="w-32"
+                type="range"
+                min="-0.3"
+                max="0.3"
+                step="0.005"
+                value={shaderDebug.height}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    height: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+          </div>
+          <div className="mt-4 space-y-3">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-white/50">
+              Waves
+            </p>
+            <label className="flex items-center justify-between gap-3">
+              <span>Wave 1</span>
+              <input
+                className="w-32"
+                type="range"
+                min="2"
+                max="24"
+                step="0.1"
+                value={shaderDebug.w1Scale}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    w1Scale: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Wave 2</span>
+              <input
+                className="w-32"
+                type="range"
+                min="2"
+                max="24"
+                step="0.1"
+                value={shaderDebug.w2Scale}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    w2Scale: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Wave 3</span>
+              <input
+                className="w-32"
+                type="range"
+                min="2"
+                max="24"
+                step="0.1"
+                value={shaderDebug.w3Scale}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    w3Scale: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+          </div>
+        </div>
+      )}
+      <header className="navbar-scene fixed left-0 right-0 top-0 z-40 border-b border-black/10 relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24">
+          <WaterShader
+            paused={shaderDebug.paused}
+            timeScale={shaderDebug.timeScale}
+            alpha={shaderDebug.alpha}
+            depth={shaderDebug.depth}
+            edge={shaderDebug.edge}
+            height={shaderDebug.height}
+            w1Scale={shaderDebug.w1Scale}
+            w2Scale={shaderDebug.w2Scale}
+            w3Scale={shaderDebug.w3Scale}
+            className="h-full w-full"
+          />
+        </div>
         <div className="mx-auto max-w-6xl px-6 pt-4 text-[11px] italic text-black/70">
           “A distant lighthouse guides ships safely through unfamiliar waters.
           Contact us today!”
