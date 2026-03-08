@@ -266,7 +266,7 @@ function App() {
           </div>
         </div>
       )}
-      <header className="navbar-scene fixed left-0 right-0 top-0 z-40 border-b border-black/10 relative overflow-hidden">
+      <header className="navbar-scene fixed left-0 right-0 top-0 z-40 relative overflow-hidden">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24">
           <WaterShader
             paused={shaderDebug.paused}
