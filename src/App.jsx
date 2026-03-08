@@ -1,10 +1,69 @@
 import logoMark from './assets/DistantLightHouse1.png'
 
 function App() {
+  const projects = [
+    {
+      name: 'YBWY',
+      description:
+        'A custom platform that blends automation, data clarity, and a tailored workflow for fast-moving teams.',
+      theme: {
+        primary: '#f8efe2',
+        secondary: '#e7a14f',
+        text: '#1f1207',
+      },
+      media: [
+        { label: 'Screenshot 01' },
+        { label: 'Screenshot 02' },
+        { label: 'Workflow Demo' },
+      ],
+    },
+  ]
+
+  const whyChoose = [
+    'Personal attention — You work directly with the engineer building your system.',
+    'Custom solutions — Designed specifically for your business, not generic templates.',
+    'Technical depth — Capable of handling complex or unusual requirements.',
+    'Clear communication — No jargon required.',
+    'Local understanding — We work with real-world businesses, not just tech companies.',
+  ]
+
+  const exampleProblems = [
+    '“We track everything in spreadsheets and it’s breaking down.”',
+    '“Our staff wastes hours on manual paperwork.”',
+    '“We need a system tailored to our exact workflow.”',
+    '“We have data but no way to use it.”',
+    '“We need an app to log field data.”',
+  ]
+
+  const serviceColumns = [
+    [
+      'Custom internal tools',
+      'Inventory management',
+      'Data dashboards & reporting tools',
+      'Customer portals',
+      'Booking and reservation systems',
+    ],
+    [
+      'iOS and Android apps',
+      'Windows / macOS / Linux applications',
+      'API development',
+      'System integrations',
+      'Data migration and cleanup',
+      'Reporting automation',
+      'Embedded systems & hardware software',
+      'Simulation and visualization tools',
+      'Custom algorithms',
+    ],
+  ]
+
   return (
     <div className="min-h-screen bg-black text-white">
       <header className="navbar-scene fixed left-0 right-0 top-0 z-40 border-b border-black/10">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+        <div className="mx-auto max-w-6xl px-6 pt-4 text-[11px] italic text-black/70">
+          “A distant lighthouse guides ships safely through unfamiliar waters.
+          Contact us today!”
+        </div>
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 pb-6 pt-4">
           <div className="flex items-center gap-4">
             <img
               src={logoMark}
@@ -19,11 +78,17 @@ function App() {
             <a href="#hero" className="hover:text-black">
               Home
             </a>
+            <a href="#projects" className="hover:text-black">
+              Projects
+            </a>
+            <a href="#problems" className="hover:text-black">
+              Problems
+            </a>
             <a href="#services" className="hover:text-black">
               Services
             </a>
-            <a href="#about" className="hover:text-black">
-              About
+            <a href="#workflow" className="hover:text-black">
+              Workflow
             </a>
             <a href="#contact" className="hover:text-black">
               Contact
@@ -39,19 +104,35 @@ function App() {
         >
           <div className="max-w-2xl space-y-6">
             <p className="text-xs uppercase tracking-[0.4em] text-white/60">
-              Mercer, Maine • Indie Software Studio
+              Mercer, Maine • Software Contracting
             </p>
-            <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">
-              Guidance through unfamiliar technical waters.
+            <h1 className="text-3xl font-semibold leading-tight sm:text-4xl">
+              This website was created in 3 hours.
             </h1>
-            <p className="text-base italic text-white/70">
-              “A distant lighthouse guides ships safely through unfamiliar
-              waters. Contact us today!”
-            </p>
-            <p className="text-base text-white/70 sm:text-lg">
-              We build custom software, automation, and embedded systems that
-              cut manual work and keep your team shipping.
-            </p>
+            <div className="space-y-4 text-base text-white/70 sm:text-lg">
+              <p>
+                Based in Mercer, Maine, Distant Lighthouse is an independent
+                software development firm with 10 years of computer science and
+                software engineering experience. We offer faster solutions with
+                cutting edge AI development practices.
+              </p>
+              <p>
+                We specialize in solving problems that off-the-shelf software
+                cannot.
+              </p>
+              <p>
+                We partner with organizations of all sizes — from small local
+                businesses to technical teams — and can collaborate with our
+                partners at{' '}
+                <a
+                  href="https://goldensoft.llc"
+                  className="text-white underline decoration-white/30 underline-offset-4 transition hover:text-white"
+                >
+                  Goldensoft
+                </a>{' '}
+                when projects require additional scale.
+              </p>
+            </div>
             <div className="flex flex-wrap gap-4">
               <a
                 href="#contact"
@@ -70,112 +151,236 @@ function App() {
           <div className="pointer-events-none absolute inset-0 -z-10 rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-black to-black" />
         </section>
 
-        <section
-          id="services"
-          className="mx-auto max-w-6xl px-6 py-20"
-        >
+        <section id="projects" className="mx-auto max-w-6xl px-6 py-20">
           <div className="mb-12 space-y-4">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">
-              Services
+              Custom Projects
             </p>
             <h2 className="text-3xl font-semibold sm:text-4xl">
-              Custom systems that keep operations steady.
+              Easily expandable projects with bespoke theming.
             </h2>
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {[
-              {
-                title: 'Internal Tools',
-                body: 'Bespoke dashboards, admin panels, and automation to replace manual workflows.',
-              },
-              {
-                title: 'Mobile Apps',
-                body: 'iOS and Android apps that keep teams connected in the field.',
-              },
-              {
-                title: 'APIs & Integrations',
-                body: 'Resilient data pipelines, API layers, and system integrations.',
-              },
-              {
-                title: 'Embedded Systems',
-                body: 'Hardware + software systems for industrial and edge environments.',
-              },
-            ].map((item) => (
+          <div className="space-y-10">
+            {projects.map((project) => (
               <article
-                key={item.title}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6"
+                key={project.name}
+                className="rounded-lg border p-8"
+                style={{
+                  background: `linear-gradient(135deg, ${project.theme.primary}, ${project.theme.secondary})`,
+                  borderColor: project.theme.secondary,
+                  color: project.theme.text,
+                }}
               >
-                <h3 className="mb-3 text-lg font-semibold">{item.title}</h3>
-                <p className="text-sm text-white/70">{item.body}</p>
+                <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+                  <div className="max-w-2xl space-y-4">
+                    <p className="text-xs uppercase tracking-[0.4em] text-black/60">
+                      Featured Project
+                    </p>
+                    <h3 className="text-2xl font-semibold sm:text-3xl">
+                      {project.name}
+                    </h3>
+                    <p className="text-base text-black/70">
+                      {project.description}
+                    </p>
+                  </div>
+                  <div className="text-sm text-black/60">
+                    Custom theming with two brand colors.
+                  </div>
+                </div>
+                <div className="mt-6 flex gap-4 overflow-x-auto pb-2">
+                  {project.media.map((item) => (
+                    <div
+                      key={item.label}
+                      className="min-w-[220px] flex-1 rounded-md border border-black/10 bg-white/70 p-4 text-sm text-black/70"
+                    >
+                      {item.label}
+                    </div>
+                  ))}
+                </div>
               </article>
             ))}
           </div>
         </section>
 
-        <section
-          id="about"
-          className="mx-auto max-w-6xl px-6 py-20"
-        >
-          <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr]">
-            <div className="space-y-6">
-              <p className="text-xs uppercase tracking-[0.4em] text-white/50">
-                About
-              </p>
-              <h2 className="text-3xl font-semibold sm:text-4xl">
-                A decade of building calm, resilient software.
-              </h2>
-              <p className="text-base text-white/70">
-                Distant Lighthouse is a Mercer, Maine studio focused on
-                dependable engineering. We design and build systems that keep
-                operators out of spreadsheets and back in control.
-              </p>
-              <p className="text-base text-white/70">
-                From modern web platforms to embedded deployments, we focus on
-                reliability, clarity, and long-term maintainability.
+        <section id="problems" className="mx-auto max-w-6xl px-6 py-20">
+          <div className="mb-12 space-y-4">
+            <p className="text-xs uppercase tracking-[0.4em] text-white/50">
+              Problems
+            </p>
+            <h2 className="text-3xl font-semibold sm:text-4xl">
+              Build what off-the-shelf software cannot.
+            </h2>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <h3 className="mb-3 text-lg font-semibold">The Problem</h3>
+              <p className="text-sm text-white/70">
+                Spreadsheet sprawl, manual paperwork, and scattered systems
+                slow down teams and hide critical data.
               </p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-white/70">
-              <p className="mb-4 text-xs uppercase tracking-[0.3em] text-white/50">
-                Focus Areas
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <h3 className="mb-3 text-lg font-semibold">The Solution</h3>
+              <p className="text-sm text-white/70">
+                Purpose-built software that matches your workflows, connects
+                systems, and turns data into actions.
               </p>
-              <ul className="space-y-3">
-                <li>Automation-first operations</li>
-                <li>Field-ready mobile workflows</li>
-                <li>Observability and reliability</li>
-                <li>Long-range product stewardship</li>
+            </div>
+          </div>
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Why Choose Distant Lighthouse</h3>
+              <ul className="space-y-3 text-sm text-white/70">
+                {whyChoose.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Example Problems We Solve</h3>
+              <ul className="space-y-3 text-sm text-white/70">
+                {exampleProblems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <p className="text-sm text-white/70">
+                If your organization says “There must be a better way,” we can
+                build it.
+              </p>
             </div>
           </div>
         </section>
 
-        <section
-          id="contact"
-          className="mx-auto max-w-6xl px-6 py-20"
-        >
+        <section id="services" className="mx-auto max-w-6xl px-6 py-20">
+          <div className="mb-12 space-y-4">
+            <p className="text-xs uppercase tracking-[0.4em] text-white/50">
+              Services
+            </p>
+            <h2 className="text-3xl font-semibold sm:text-4xl">
+              What we build.
+            </h2>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            {serviceColumns.map((column, index) => (
+              <div
+                key={`service-column-${index}`}
+                className="rounded-2xl border border-white/10 bg-white/5 p-6"
+              >
+                <ul className="space-y-3 text-sm text-white/70">
+                  {column.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="workflow" className="mx-auto max-w-6xl px-6 py-20">
+          <div className="mb-12 space-y-4">
+            <p className="text-xs uppercase tracking-[0.4em] text-white/50">
+              Workflow
+            </p>
+            <h2 className="text-3xl font-semibold sm:text-4xl">
+              How engagements work.
+            </h2>
+          </div>
+          <ol className="grid gap-4 md:grid-cols-2">
+            {[
+              'Initial consultation (no obligation)',
+              'Problem definition and feature assessment',
+              'Feature/progress definition in work tracking software',
+              'Development with feedback',
+              'Deployment and support',
+            ].map((step) => (
+              <li
+                key={step}
+                className="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-white/70"
+              >
+                {step}
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section id="contact" className="mx-auto max-w-6xl px-6 py-20">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-10">
-            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-              <div>
+            <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+              <div className="max-w-xl space-y-4">
                 <p className="text-xs uppercase tracking-[0.4em] text-white/50">
                   Contact
                 </p>
-                <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">
+                <h2 className="text-3xl font-semibold sm:text-4xl">
                   Ready to map the next build?
                 </h2>
-                <p className="mt-4 text-base text-white/70">
-                  Send a note and we’ll respond with timelines, scoping, and the
-                  right technical approach.
+                <p className="text-base text-white/70">
+                  Contact us for timelines, scoping, and the right technical
+                  approach.
                 </p>
+                <div className="space-y-2 text-sm text-white/70">
+                  <p>toryjleo@distantlighthouse.com</p>
+                  <p>(207) 509-8613</p>
+                  <a
+                    href="mailto:toryjleo@distantlighthouse.com"
+                    className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-xs uppercase tracking-[0.3em] text-white transition hover:border-white/60"
+                  >
+                    Start the conversation
+                  </a>
+                </div>
+                <div className="pt-4 text-sm text-white/60">
+                  Social:{' '}
+                  <a
+                    href="https://linkedin.com/distant-lighthouse-llc"
+                    className="text-white underline decoration-white/30 underline-offset-4 transition hover:text-white"
+                  >
+                    LinkedIn
+                  </a>
+                </div>
               </div>
-              <div className="space-y-3 text-sm">
-                <p className="text-white/70">toryjleo@distantlighthouse.com</p>
-                <p className="text-white/70">(207) 509-8613</p>
-                <a
-                  href="mailto:toryjleo@distantlighthouse.com"
-                  className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-xs uppercase tracking-[0.3em] text-white transition hover:border-white/60"
+              <form className="w-full max-w-md space-y-4">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-white/40"
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-white/40"
+                />
+                <textarea
+                  rows="4"
+                  placeholder="Tell us about your project"
+                  className="w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-white/40"
+                />
+                <button
+                  type="button"
+                  className="w-full rounded-full border border-white/20 px-6 py-3 text-xs uppercase tracking-[0.3em] text-white transition hover:border-white/60"
                 >
-                  Start the conversation
-                </a>
-              </div>
+                  Request a consult
+                </button>
+              </form>
+            </div>
+            <div className="mt-12 border-t border-white/10 pt-8">
+              <blockquote className="quote-block text-sm text-white/70">
+                A stormy wind may drive sleet against inland meadows sufficiently
+                to arouse sympathy for the men who patrol the streets; but seldom
+                on such nights do thoughts of people nowadays drift to the men
+                in solitary outposts of the seaboard who are confined to the
+                narrow cabin of a lightship, or to those who watch in the towers
+                of lighthouses perched on the bleak headlands of the coast or on
+                sunken ledges. These men keep a quiet but effective watch which
+                makes a naturally inhospitable coast at least a navigable one.
+                Remote and unknown, they are the guardians of the coast; and man
+                must still keep constant vigil against the treachery of wind and
+                water.
+              </blockquote>
+              <p className="mt-4 text-xs text-white/50">
+                LIGHTHOUSES OF THE MAINE COAST — Robert T. Sterling. 2nd edition,
+                3rd printing. Copyright 1935, Steven Daye Press. Designed by
+                John Hooper. Printed by Steven Daye Press, Brattleboro,
+                Vermont, USA.
+              </p>
             </div>
           </div>
         </section>
