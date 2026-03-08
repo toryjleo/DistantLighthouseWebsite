@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --quote-font: "Georgia", "Times New Roman", serif;
+    --quote-size: 0.95rem;
+    --quote-align: left;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -15,5 +21,12 @@
 @layer components {
   .navbar-scene {
     background-color: #ffffff;
+  }
+
+  .quote-block {
+    font-family: var(--quote-font, "Georgia", "Times New Roman", serif);
+    font-size: var(--quote-size, 0.95rem);
+    line-height: 1.7;
+    text-align: var(--quote-align, left);
   }
 }
