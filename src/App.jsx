@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import logoMark from './assets/DistantLightHouse1.png'
 import WaterShader from './components/WaterShader'
+import ParticleEdges from './components/ParticleEdges'
 
 function App() {
   const [shaderDebug, setShaderDebug] = useState({
@@ -16,6 +17,56 @@ function App() {
     w2Scale: 4.0,
     w3Scale: 16.0,
   })
+
+  useEffect(() => {
+    let mounted = true
+    fetch('/water-preset.json')
+      .then((response) => (response.ok ? response.json() : null))
+      .then((preset) => {
+        if (!mounted || !preset) return
+        setShaderDebug((prev) => ({
+          ...prev,
+          timeScale: Number(preset.timeScale ?? prev.timeScale),
+          alpha: Number(preset.alpha ?? prev.alpha),
+          depth: Number(preset.depth ?? prev.depth),
+          edge: Number(preset.edge ?? prev.edge),
+          height: Number(preset.height ?? prev.height),
+          w1Scale: Number(preset.w1Scale ?? prev.w1Scale),
+          w2Scale: Number(preset.w2Scale ?? prev.w2Scale),
+          w3Scale: Number(preset.w3Scale ?? prev.w3Scale),
+        }))
+      })
+      .catch(() => {})
+
+    return () => {
+      mounted = false
+    }
+  }, [])
+
+  const downloadShaderPreset = () => {
+    const preset = {
+      timeScale: shaderDebug.timeScale,
+      alpha: shaderDebug.alpha,
+      depth: shaderDebug.depth,
+      edge: shaderDebug.edge,
+      height: shaderDebug.height,
+      w1Scale: shaderDebug.w1Scale,
+      w2Scale: shaderDebug.w2Scale,
+      w3Scale: shaderDebug.w3Scale,
+      savedAt: new Date().toISOString(),
+    }
+    const blob = new Blob([JSON.stringify(preset, null, 2)], {
+      type: 'application/json',
+    })
+    const url = URL.createObjectURL(blob)
+    const anchor = document.createElement('a')
+    anchor.href = url
+    anchor.download = 'water-shader-preset.json'
+    document.body.appendChild(anchor)
+    anchor.click()
+    anchor.remove()
+    URL.revokeObjectURL(url)
+  }
 
   const projects = [
     {
@@ -74,6 +125,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <ParticleEdges className="pointer-events-none fixed inset-0 z-10" />
       {import.meta.env.DEV && (
         <div className="fixed bottom-6 right-6 z-50 w-72 rounded-lg border border-white/10 bg-black/80 p-4 text-xs text-white/70 backdrop-blur">
           <p className="mb-3 text-[10px] uppercase tracking-[0.35em] text-white/50">
@@ -263,6 +315,13 @@ function App() {
                 }
               />
             </label>
+            <button
+              type="button"
+              onClick={downloadShaderPreset}
+              className="mt-2 w-full rounded-md border border-white/20 px-3 py-2 text-[10px] uppercase tracking-[0.35em] text-white/70 transition hover:border-white/60 hover:text-white"
+            >
+              Save preset
+            </button>
           </div>
         </div>
       )}
