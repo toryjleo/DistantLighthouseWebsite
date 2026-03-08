@@ -16,6 +16,27 @@ function App() {
     w1Scale: 10.0,
     w2Scale: 4.0,
     w3Scale: 16.0,
+    particleSideWidth: 140,
+    particleCount: 70,
+    particleMinRadius: 8,
+    particleMaxRadius: 22,
+    particleMinSpeed: 10,
+    particleMaxSpeed: 32,
+    particleDrift: 12,
+    particleOpacity: 0.25,
+    particleEmitterX: 0,
+    particleEmitterY: 0,
+    particleEmitterZ: 0,
+    particleRotation: 0,
+    particleLightX: 0.6,
+    particleLightY: -0.6,
+    particleLightZ: 2.0,
+    particleOutline: 0.1,
+    particleOutlineSoft: 0.04,
+    particleOutlineAlpha: 0.8,
+    particleDiffuse: 0.3,
+    particleSpecular: 0.55,
+    particleSpecularPower: 32,
   })
 
   useEffect(() => {
@@ -36,7 +57,7 @@ function App() {
           w3Scale: Number(preset.w3Scale ?? prev.w3Scale),
         }))
       })
-      .catch(() => {})
+      .catch(() => { })
 
     return () => {
       mounted = false
@@ -126,8 +147,30 @@ function App() {
   return (
     <div className="min-h-screen bg-black text-white">
       <ParticleEdges
-        className="particle-edges pointer-events-none fixed inset-0 z-10 h-full w-full"
-        style={{ '--particle-edge-width': '140px' }}
+        className="particle-edges pointer-events-none fixed left-0 top-0 z-30 block h-screen w-screen"
+        style={{ '--particle-edge-width': `${shaderDebug.particleSideWidth}px` }}
+        paused={shaderDebug.paused}
+        sideWidth={shaderDebug.particleSideWidth}
+        count={shaderDebug.particleCount}
+        minRadius={shaderDebug.particleMinRadius}
+        maxRadius={shaderDebug.particleMaxRadius}
+        minSpeed={shaderDebug.particleMinSpeed}
+        maxSpeed={shaderDebug.particleMaxSpeed}
+        drift={shaderDebug.particleDrift}
+        opacity={shaderDebug.particleOpacity}
+        emitterX={shaderDebug.particleEmitterX}
+        emitterY={shaderDebug.particleEmitterY}
+        emitterZ={shaderDebug.particleEmitterZ}
+        rotation={shaderDebug.particleRotation}
+        lightX={shaderDebug.particleLightX}
+        lightY={shaderDebug.particleLightY}
+        lightZ={shaderDebug.particleLightZ}
+        outline={shaderDebug.particleOutline}
+        outlineSoft={shaderDebug.particleOutlineSoft}
+        outlineAlpha={shaderDebug.particleOutlineAlpha}
+        diffuse={shaderDebug.particleDiffuse}
+        specular={shaderDebug.particleSpecular}
+        specularPower={shaderDebug.particleSpecularPower}
       />
       {import.meta.env.DEV && (
         <div className="fixed bottom-6 right-6 z-50 w-72 rounded-lg border border-white/10 bg-black/80 p-4 text-xs text-white/70 backdrop-blur">
@@ -325,6 +368,368 @@ function App() {
             >
               Save preset
             </button>
+          </div>
+          <div className="mt-4 space-y-3">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-white/50">
+              Particles
+            </p>
+            <label className="flex items-center justify-between gap-3">
+              <span>Side width</span>
+              <input
+                className="w-32"
+                type="range"
+                min="40"
+                max="300"
+                step="1"
+                value={shaderDebug.particleSideWidth}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleSideWidth: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Count</span>
+              <input
+                className="w-32"
+                type="range"
+                min="10"
+                max="160"
+                step="1"
+                value={shaderDebug.particleCount}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleCount: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Size min</span>
+              <input
+                className="w-32"
+                type="range"
+                min="2"
+                max="30"
+                step="1"
+                value={shaderDebug.particleMinRadius}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleMinRadius: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Size max</span>
+              <input
+                className="w-32"
+                type="range"
+                min="4"
+                max="50"
+                step="1"
+                value={shaderDebug.particleMaxRadius}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleMaxRadius: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Speed min</span>
+              <input
+                className="w-32"
+                type="range"
+                min="2"
+                max="60"
+                step="1"
+                value={shaderDebug.particleMinSpeed}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleMinSpeed: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Speed max</span>
+              <input
+                className="w-32"
+                type="range"
+                min="4"
+                max="80"
+                step="1"
+                value={shaderDebug.particleMaxSpeed}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleMaxSpeed: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Drift</span>
+              <input
+                className="w-32"
+                type="range"
+                min="0"
+                max="40"
+                step="1"
+                value={shaderDebug.particleDrift}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleDrift: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Opacity</span>
+              <input
+                className="w-32"
+                type="range"
+                min="0.05"
+                max="1"
+                step="0.01"
+                value={shaderDebug.particleOpacity}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleOpacity: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Emit X</span>
+              <input
+                className="w-32"
+                type="range"
+                min="-0.5"
+                max="0.5"
+                step="0.01"
+                value={shaderDebug.particleEmitterX}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleEmitterX: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Emit Y</span>
+              <input
+                className="w-32"
+                type="range"
+                min="-0.5"
+                max="0.5"
+                step="0.01"
+                value={shaderDebug.particleEmitterY}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleEmitterY: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Emit Z</span>
+              <input
+                className="w-32"
+                type="range"
+                min="-1"
+                max="1"
+                step="0.01"
+                value={shaderDebug.particleEmitterZ}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleEmitterZ: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Rotation</span>
+              <input
+                className="w-32"
+                type="range"
+                min="-180"
+                max="180"
+                step="1"
+                value={shaderDebug.particleRotation}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleRotation: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Light X</span>
+              <input
+                className="w-32"
+                type="range"
+                min="-3"
+                max="3"
+                step="0.05"
+                value={shaderDebug.particleLightX}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleLightX: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Light Y</span>
+              <input
+                className="w-32"
+                type="range"
+                min="-3"
+                max="3"
+                step="0.05"
+                value={shaderDebug.particleLightY}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleLightY: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Light Z</span>
+              <input
+                className="w-32"
+                type="range"
+                min="0.1"
+                max="6"
+                step="0.05"
+                value={shaderDebug.particleLightZ}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleLightZ: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Outline</span>
+              <input
+                className="w-32"
+                type="range"
+                min="0.02"
+                max="0.4"
+                step="0.01"
+                value={shaderDebug.particleOutline}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleOutline: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Outline soft</span>
+              <input
+                className="w-32"
+                type="range"
+                min="0.005"
+                max="0.2"
+                step="0.005"
+                value={shaderDebug.particleOutlineSoft}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleOutlineSoft: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Outline alpha</span>
+              <input
+                className="w-32"
+                type="range"
+                min="0.05"
+                max="1"
+                step="0.01"
+                value={shaderDebug.particleOutlineAlpha}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleOutlineAlpha: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Diffuse</span>
+              <input
+                className="w-32"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={shaderDebug.particleDiffuse}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleDiffuse: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Specular</span>
+              <input
+                className="w-32"
+                type="range"
+                min="0"
+                max="2"
+                step="0.01"
+                value={shaderDebug.particleSpecular}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleSpecular: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3">
+              <span>Spec power</span>
+              <input
+                className="w-32"
+                type="range"
+                min="2"
+                max="96"
+                step="1"
+                value={shaderDebug.particleSpecularPower}
+                onChange={(event) =>
+                  setShaderDebug((prev) => ({
+                    ...prev,
+                    particleSpecularPower: Number(event.target.value),
+                  }))
+                }
+              />
+            </label>
           </div>
         </div>
       )}
