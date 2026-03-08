@@ -9,7 +9,7 @@ function App() {
             <img
               src={logoMark}
               alt="Distant Lighthouse logo"
-              className="h-12 w-12 rounded-full border border-black/15 bg-white object-contain"
+              className="h-16 w-16 rounded-full border border-black/15 bg-white object-contain"
             />
             <div className="text-xs font-semibold uppercase tracking-[0.35em] text-black">
               Distant Lighthouse
@@ -35,7 +35,7 @@ function App() {
       <main className="pt-24">
         <section
           id="hero"
-          className="relative mx-auto flex min-h-[80vh] max-w-6xl flex-col justify-center px-6 py-24"
+          className="relative mx-auto flex min-h-[90vh] max-w-6xl flex-col justify-center px-6 py-28"
         >
           <div className="max-w-2xl space-y-6">
             <p className="text-xs uppercase tracking-[0.4em] text-white/60">
