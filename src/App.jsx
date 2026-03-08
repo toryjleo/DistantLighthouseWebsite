@@ -125,7 +125,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <ParticleEdges className="pointer-events-none fixed inset-0 z-10" />
+      <ParticleEdges
+        className="particle-edges pointer-events-none fixed inset-0 z-10 h-full w-full"
+        style={{ '--particle-edge-width': '140px' }}
+      />
       {import.meta.env.DEV && (
         <div className="fixed bottom-6 right-6 z-50 w-72 rounded-lg border border-white/10 bg-black/80 p-4 text-xs text-white/70 backdrop-blur">
           <p className="mb-3 text-[10px] uppercase tracking-[0.35em] text-white/50">

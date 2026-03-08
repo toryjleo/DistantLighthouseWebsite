@@ -27,7 +27,7 @@ function createParticle(bounds, config) {
   }
 }
 
-export default function ParticleEdges({ className = '' }) {
+export default function ParticleEdges({ className = '', style }) {
   const canvasRef = useRef(null)
   const rafRef = useRef(0)
   const particlesRef = useRef([])
@@ -109,5 +109,5 @@ export default function ParticleEdges({ className = '' }) {
     }
   }, [])
 
-  return <canvas ref={canvasRef} className={className} />
+  return <canvas ref={canvasRef} className={className} style={style} />
 }
