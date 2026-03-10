@@ -38,6 +38,37 @@ export default class ParticleEmitter {
     }
 
     /**
+     * Initializes the particle pool.
+     */
+    init(bounds, config) {
+        this.particles = []
+        this.syncCount(config.count)
+    }
+
+    /**
+     * Spawns a sudden burst of particles.
+     * @param {number} count - How many particles to attempt to spawn.
+     * @param {Object} bounds - The window bounds.
+     * @param {Object} config - Particle configuration.
+     */
+    spawnBurst(count, bounds, config) {
+        let spawned = 0
+        for (let i = 0; i < this.particles.length; i++) {
+            if (!this.particles[i].active) {
+                const newParticleData = makeParticle(bounds, config)
+                this.particles[i].x = newParticleData.x
+                this.particles[i].y = newParticleData.y
+                this.particles[i].r = newParticleData.r
+                this.particles[i].speed = newParticleData.speed
+                this.particles[i].drift = newParticleData.drift
+                this.particles[i].active = true
+                spawned++
+                if (spawned >= count) break
+            }
+        }
+    }
+
+    /**
      * Initializes or resizes the particle pool.
      */
     syncCount(count) {
@@ -64,29 +95,7 @@ export default class ParticleEmitter {
     update(deltaTime, bounds, config) {
         this.syncCount(config.count)
 
-        // 1. Spawning logic
-        if (config.spawnRate > 0) {
-            this.timeSinceLastSpawn += deltaTime
-            const spawnInterval = 1.0 / config.spawnRate
-
-            // Spawn as many particles as we need to catch up to the current time
-            while (this.timeSinceLastSpawn >= spawnInterval) {
-                const p = this.firstUnusedParticle()
-                if (p) {
-                    // Revive the particle at the exact emitter position
-                    const newParticleData = makeParticle(bounds, config)
-                    p.x = newParticleData.x
-                    p.y = newParticleData.y
-                    p.r = newParticleData.r
-                    p.speed = newParticleData.speed
-                    p.drift = newParticleData.drift
-                    p.active = true
-                }
-                this.timeSinceLastSpawn -= spawnInterval
-            }
-        }
-
-        // 2. Physics & Despawn logic
+        // 1. Physics & Despawn logic
         // We despawn when particles go above the top of the canvas (y < -maxRadius).
         // Since we draw upwards, the canvas coordinates might need checking. 
         // In this implementation, Y goes from 0 at top to bounds.height at bottom.

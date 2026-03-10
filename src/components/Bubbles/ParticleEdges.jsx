@@ -188,6 +188,7 @@ export default function ParticleEdges({
     const uSpecular = gl.getUniformLocation(program, 'u_specular')
     const uSpecularPower = gl.getUniformLocation(program, 'u_specular_power')
     const uAlpha = gl.getUniformLocation(program, 'u_alpha')
+    const uMouse = gl.getUniformLocation(program, 'u_mouse')
 
     // ── Fullscreen quad geometry ──────────────────────────────────────
     // A 4-vertex triangle strip covering clip space (-1 to 1).
@@ -228,6 +229,40 @@ export default function ParticleEdges({
     resize()
     window.addEventListener('resize', resize)
 
+    // ── Interaction handlers ──────────────────────────────────────────
+    let mouseX = 0
+    let mouseY = 0
+    const onMouseMove = (e) => {
+      mouseX = e.clientX
+      mouseY = e.clientY
+    }
+    window.addEventListener('mousemove', onMouseMove)
+
+    let scrollDistance = 0
+    let lastScrollY = window.scrollY
+    let scrollTimer = null
+    const onScroll = () => {
+      const currentScrollY = window.scrollY
+      scrollDistance += Math.abs(currentScrollY - lastScrollY)
+      lastScrollY = currentScrollY
+
+      if (scrollTimer) clearTimeout(scrollTimer)
+      scrollTimer = setTimeout(() => {
+        // Scroll ended! Spawn bubbles based on distance
+        // 1 particle per 10px scrolled, up to the max count limit
+        const activeConfig = configRef.current
+        const burstCount = Math.min(
+          Math.floor(scrollDistance * 0.1),
+          activeConfig.count
+        )
+        if (burstCount > 0) {
+          emitter.spawnBurst(burstCount, boundsRef.current, activeConfig)
+        }
+        scrollDistance = 0
+      }, 150)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+
     // ── Per-particle draw call ────────────────────────────────────────
     // Sets all per-particle uniforms (center, radius, material) and
     // issues a single TRIANGLE_STRIP draw on the shared quad buffer.
@@ -242,6 +277,7 @@ export default function ParticleEdges({
       gl.uniform1f(uSpecular, config.specular)
       gl.uniform1f(uSpecularPower, config.specularPower)
       gl.uniform1f(uAlpha, config.opacity)
+      gl.uniform2f(uMouse, mouseX, mouseY)
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
     }
 
@@ -273,7 +309,10 @@ export default function ParticleEdges({
       gl.uniform2f(uResolution, width * dpr, bounds.height * dpr)
 
       // --- Particle simulation (delegated to ParticleEmitter) ---
-      emitter.update(delta, bounds, config)
+      // We pass a copy of the config with spawnRate=0 so it ONLY spawns via the scroll burst,
+      // not automatically every frame.
+      const runConfig = { ...config, particleSpawnRate: 0 }
+      emitter.update(delta, bounds, runConfig)
 
       // --- Render each particle + its horizontal mirror ---
       // The mirror creates the symmetrical "edges" effect: particles on
@@ -299,6 +338,9 @@ export default function ParticleEdges({
     return () => {
       cancelAnimationFrame(rafRef.current)
       window.removeEventListener('resize', resize)
+      window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('scroll', onScroll)
+      if (scrollTimer) clearTimeout(scrollTimer)
       gl.deleteBuffer(quadBuffer)
       gl.deleteProgram(program)
     }

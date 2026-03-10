@@ -12,6 +12,7 @@ uniform float u_diffuse;
 uniform float u_specular;
 uniform float u_specular_power;
 uniform float u_alpha;
+uniform vec2 u_mouse;
 
 void main() {
   float r = length(v_pos);

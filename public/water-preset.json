@@ -10,8 +10,8 @@
   "w1Scale": 2,
   "w2Scale": 5.1,
   "w3Scale": 13.6,
-  "particleCount": 124,
-  "particleSpawnRate": 12,
+  "particleCount": 373,
+  "particleSpawnRate": 37,
   "particleMinRadius": 8,
   "particleMaxRadius": 22,
   "particleMinSpeed": 39,
@@ -19,7 +19,7 @@
   "particleDrift": 16,
   "particleOpacity": 0.58,
   "particleEmitterX": 70,
-  "particleEmitterY": 1,
+  "particleEmitterY": 0.99,
   "particleEmitterZ": 0.32,
   "particleRotation": 0,
   "particleLightX": -2.8,
@@ -31,5 +31,5 @@
   "particleDiffuse": 0.3,
   "particleSpecular": 0.55,
   "particleSpecularPower": 32,
-  "savedAt": "2026-03-10T17:19:52.991Z"
+  "savedAt": "2026-03-10T17:37:26.866Z"
 }
