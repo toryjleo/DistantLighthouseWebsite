@@ -135,6 +135,8 @@ function App() {
       'API development',
       'System integrations',
       'Data migration and cleanup',
+    ],
+    [
       'Reporting automation',
       'Embedded systems & hardware software',
       'Simulation and visualization tools',
@@ -1032,7 +1034,7 @@ function App() {
               What we build.
             </h2>
           </div>
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-8 md:grid-cols-3">
             {serviceColumns.map((column, index) => (
               <motion.div
                 key={`service-column-${index}`}
@@ -1178,7 +1180,7 @@ function App() {
             </div>
             <div className="mt-12 border-t border-white/10 pt-8">
               <blockquote className="quote-block text-sm text-white/70">
-                A stormy wind may drive sleet against inland meadows sufficiently
+                "A stormy wind may drive sleet against inland meadows sufficiently
                 to arouse sympathy for the men who patrol the streets; but seldom
                 on such nights do thoughts of people nowadays drift to the men
                 in solitary outposts of the seaboard who are confined to the
@@ -1188,13 +1190,10 @@ function App() {
                 makes a naturally inhospitable coast at least a navigable one.
                 Remote and unknown, they are the guardians of the coast; and man
                 must still keep constant vigil against the treachery of wind and
-                water.
+                water.""
               </blockquote>
               <p className="mt-4 text-xs text-white/50">
-                LIGHTHOUSES OF THE MAINE COAST — Robert T. Sterling. 2nd edition,
-                3rd printing. Copyright 1935, Steven Daye Press. Designed by
-                John Hooper. Printed by Steven Daye Press, Brattleboro,
-                Vermont, USA.
+                LIGHTHOUSES OF THE MAINE COAST — Robert T. Sterling.
               </p>
             </div>
           </div>
