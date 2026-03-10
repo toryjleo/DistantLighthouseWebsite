@@ -7,7 +7,10 @@ export function rand(min, max) {
  * Creates a new inactive particle at the exact specified emitter position.
  */
 export function makeParticle(bounds, config) {
-    const offsetX = config.emitterX // Absolute pixels from the left edge
+    // Dynamically calculate the visual border width (min 24px padding, up to window width - max-w-6xl)
+    const edgeWidth = Math.max(24, (bounds.width - 1152) / 2)
+    // Constrain the spawn X position to the center of the current edge border
+    const offsetX = Math.min(config.emitterX, edgeWidth / 2) // Absolute pixels from the left edge
     const offsetY = config.emitterY * bounds.height
     return {
         x: offsetX,

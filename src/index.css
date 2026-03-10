@@ -14,7 +14,8 @@
   }
 
   [id] {
-    scroll-margin-top: 10rem; /* clear fixed header + top fade */
+    scroll-margin-top: 10rem;
+    /* clear fixed header + top fade */
   }
 
   body {
@@ -35,25 +36,22 @@
   }
 
   .particle-edges {
-    mask-image: linear-gradient(
-      to right,
-      #000 0,
-      #000 var(--particle-edge-width, 140px),
-      transparent var(--particle-edge-width, 140px),
-      transparent calc(100% - var(--particle-edge-width, 140px)),
-      #000 calc(100% - var(--particle-edge-width, 140px)),
-      #000 100%
-    );
+    --edge-width: max(24px, calc((100vw - 1152px) / 2));
+    mask-image: linear-gradient(to right,
+        #000 0,
+        #000 var(--edge-width),
+        transparent var(--edge-width),
+        transparent calc(100% - var(--edge-width)),
+        #000 calc(100% - var(--edge-width)),
+        #000 100%);
     mask-repeat: no-repeat;
-    -webkit-mask-image: linear-gradient(
-      to right,
-      #000 0,
-      #000 var(--particle-edge-width, 140px),
-      transparent var(--particle-edge-width, 140px),
-      transparent calc(100% - var(--particle-edge-width, 140px)),
-      #000 calc(100% - var(--particle-edge-width, 140px)),
-      #000 100%
-    );
+    -webkit-mask-image: linear-gradient(to right,
+        #000 0,
+        #000 var(--edge-width),
+        transparent var(--edge-width),
+        transparent calc(100% - var(--edge-width)),
+        #000 calc(100% - var(--edge-width)),
+        #000 100%);
     -webkit-mask-repeat: no-repeat;
   }
 }
