@@ -174,7 +174,7 @@
      "cdk-hnb659fds-assets-529646247360-us-east-1"
     ],
     "SourceObjectKeys": [
-     "81e26cd19c52fb6f0f73065028d903549fa102e75a561ca5b80c54bd862f2c9f.zip"
+     "1a79931dd9f1cde570f3232b43763860550b916c81e5e542e7a1d15b59dedd47.zip"
     ],
     "DestinationBucketName": {
      "Ref": "SiteBucket397A1860"

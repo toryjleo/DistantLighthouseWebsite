@@ -1,16 +1,33 @@
-# React + Vite
+# Distant Lighthouse Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the main marketing and portfolio website for Distant Lighthouse, built with React, Vite, TailwindCSS, and Three.js (React Three Fiber). 
 
-Currently, two official plugins are available:
+## Technology Stack
+- **Framework**: React 19 + Vite
+- **Styling**: TailwindCSS
+- **Animations**: Framer Motion
+- **3D Graphics**: Three.js / React Three Fiber / React Three Drei (used for the background particle and water shader effects)
+- **Infrastructure as Code**: AWS CDK (TypeScript)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Deployment Instructions
 
-## React Compiler
+To update the live site, you need to build the production bundle of the React app and then deploy it using the AWS CDK setup located in the `infra` folder.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**CRITICAL NOTE**: You MUST use the `personal` AWS profile to deploy this site.
 
-## Expanding the ESLint configuration
+1. **Build the production bundle:**
+   From the root of the project (`/home/tory/Documents/Programming/DistantLighthouse/Website`), run:
+   ```bash
+   npm run build
+   ```
+   *(This will bundle your latest code into the `dist` folder)*
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. **Deploy it using AWS CDK:**
+   Navigate to the `infra` folder and deploy:
+   ```bash
+   cd infra
+   npx cdk deploy --profile personal
+   ```
+   *(This will grab the files from `dist`, update your S3 bucket, and invalidate the CloudFront distribution)*
+
+Once the CDK deployment finishes, it may take a few minutes for the CloudFront cache to properly update, after which your changes will be live.
