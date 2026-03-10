@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
-import particleVertexSource from '../shaders/particle.vert?raw'
-import particleFragmentSource from '../shaders/particle.frag?raw'
+import particleVertexSource from './particle.vert?raw'
+import particleFragmentSource from './particle.frag?raw'
 
 const DEFAULTS = {
   sideWidth: 140,

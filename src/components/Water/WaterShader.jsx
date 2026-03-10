@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
-import waterVertexSource from '../shaders/water.vert?raw'
-import waterFragmentSource from '../shaders/water.frag?raw'
+import waterVertexSource from './water.vert?raw'
+import waterFragmentSource from './water.frag?raw'
 
 const DEFAULTS = {
   timeScale: 0.65,

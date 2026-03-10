@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import logoMark from './assets/DistantLightHouse1.png'
-import WaterShader from './components/WaterShader'
-import ParticleEdges from './components/ParticleEdges'
+import WaterShader from './components/Water/WaterShader'
+import ParticleEdges from './components/Bubbles/ParticleEdges'
 
 function App() {
   const [shaderDebug, setShaderDebug] = useState({
