@@ -392,7 +392,7 @@ function App() {
                   className="w-32"
                   type="range"
                   min="2"
-                  max="30"
+                  max="150"
                   step="1"
                   value={shaderDebug.particleMinRadius}
                   onChange={(event) =>
@@ -409,7 +409,7 @@ function App() {
                   className="w-32"
                   type="range"
                   min="4"
-                  max="50"
+                  max="200"
                   step="1"
                   value={shaderDebug.particleMaxRadius}
                   onChange={(event) =>
@@ -426,7 +426,7 @@ function App() {
                   className="w-32"
                   type="range"
                   min="2"
-                  max="60"
+                  max="300"
                   step="1"
                   value={shaderDebug.particleMinSpeed}
                   onChange={(event) =>
@@ -443,7 +443,7 @@ function App() {
                   className="w-32"
                   type="range"
                   min="4"
-                  max="80"
+                  max="500"
                   step="1"
                   value={shaderDebug.particleMaxSpeed}
                   onChange={(event) =>
