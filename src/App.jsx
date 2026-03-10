@@ -140,6 +140,13 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Top fade — black gradient so bubbles dissolve smoothly */}
+      <div
+        className="pointer-events-none fixed inset-x-0 top-0 z-[31] h-[30vh]"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0) 100%)',
+        }}
+      />
       <ParticleEdges
         className="particle-edges pointer-events-none fixed left-0 top-0 z-30 block h-screen w-screen"
         paused={shaderDebug.paused}
