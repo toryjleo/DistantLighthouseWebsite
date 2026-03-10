@@ -24,6 +24,9 @@ function App() {
     particleMinSpeed: 10,
     particleMaxSpeed: 32,
     particleDrift: 12,
+    particleSwayAmount: 15,
+    particleSwaySpeed: 2,
+    particleSwayRandom: 0.5,
     particleOpacity: 0.25,
     particleEmitterX: 70, // 70 pixels from the edge (center of the old column width of 140)
     particleEmitterY: 1,  // Bottom of the screen
@@ -158,6 +161,9 @@ function App() {
         minSpeed={shaderDebug.particleMinSpeed}
         maxSpeed={shaderDebug.particleMaxSpeed}
         drift={shaderDebug.particleDrift}
+        swayAmount={shaderDebug.particleSwayAmount}
+        swaySpeed={shaderDebug.particleSwaySpeed}
+        swayRandom={shaderDebug.particleSwayRandom}
         opacity={shaderDebug.particleOpacity}
         emitterX={shaderDebug.particleEmitterX}
         emitterY={shaderDebug.particleEmitterY}
@@ -493,6 +499,57 @@ function App() {
                     setShaderDebug((prev) => ({
                       ...prev,
                       particleDrift: Number(event.target.value),
+                    }))
+                  }
+                />
+              </label>
+              <label className="flex items-center justify-between gap-3">
+                <span>Sway Amount</span>
+                <input
+                  className="w-32"
+                  type="range"
+                  min="0"
+                  max="60"
+                  step="1"
+                  value={shaderDebug.particleSwayAmount}
+                  onChange={(event) =>
+                    setShaderDebug((prev) => ({
+                      ...prev,
+                      particleSwayAmount: Number(event.target.value),
+                    }))
+                  }
+                />
+              </label>
+              <label className="flex items-center justify-between gap-3">
+                <span>Sway Speed</span>
+                <input
+                  className="w-32"
+                  type="range"
+                  min="0.1"
+                  max="10"
+                  step="0.1"
+                  value={shaderDebug.particleSwaySpeed}
+                  onChange={(event) =>
+                    setShaderDebug((prev) => ({
+                      ...prev,
+                      particleSwaySpeed: Number(event.target.value),
+                    }))
+                  }
+                />
+              </label>
+              <label className="flex items-center justify-between gap-3">
+                <span>Sway Random</span>
+                <input
+                  className="w-32"
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  value={shaderDebug.particleSwayRandom}
+                  onChange={(event) =>
+                    setShaderDebug((prev) => ({
+                      ...prev,
+                      particleSwayRandom: Number(event.target.value),
                     }))
                   }
                 />
