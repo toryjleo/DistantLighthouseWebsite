@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import logoMark from './assets/DistantLightHouse1.png'
 import WaterShader from './components/Water/WaterShader'
 import ParticleEdges from './components/Bubbles/ParticleEdges'
@@ -817,10 +818,13 @@ function App() {
         </div>
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 pb-6 pt-4">
           <div className="flex items-center gap-4">
-            <img
+            <motion.img
               src={logoMark}
               alt="Distant Lighthouse logo"
               className="h-16 w-16 rounded-full border border-black/15 bg-white object-contain"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             />
             <div className="text-xs font-semibold uppercase tracking-[0.35em] text-black">
               Distant Lighthouse
@@ -854,7 +858,12 @@ function App() {
           id="hero"
           className="relative mx-auto flex min-h-[90vh] max-w-6xl flex-col justify-center px-6 py-28"
         >
-          <div className="max-w-2xl space-y-6">
+          <motion.div
+            className="max-w-2xl space-y-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
             <p className="text-xs uppercase tracking-[0.4em] text-white/60">
               Mercer, Maine • Software Contracting
             </p>
@@ -899,11 +908,18 @@ function App() {
                 View services
               </a>
             </div>
-          </div>
+          </motion.div>
           <div className="pointer-events-none absolute inset-0 -z-10 rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-black to-black" />
         </section>
 
-        <section id="projects" className="mx-auto max-w-6xl px-6 py-20">
+        <motion.section
+          id="projects"
+          className="mx-auto max-w-6xl px-6 py-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
           <div className="mb-12 space-y-4">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">
               Custom Projects
@@ -952,9 +968,16 @@ function App() {
               </article>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section id="problems" className="mx-auto max-w-6xl px-6 py-20">
+        <motion.section
+          id="problems"
+          className="mx-auto max-w-6xl px-6 py-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
           <div className="mb-12 space-y-4">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">
               Problems
@@ -964,46 +987,91 @@ function App() {
             </h2>
           </div>
           <div className="grid gap-8 md:grid-cols-2">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <motion.div
+              className="rounded-2xl border border-white/10 bg-white/5 p-6"
+              whileHover={{ y: -4, boxShadow: '0 0 20px rgba(255,255,255,0.08)' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            >
               <h3 className="mb-3 text-lg font-semibold">The Problem</h3>
               <p className="text-sm text-white/70">
                 Spreadsheet sprawl, manual paperwork, and scattered systems
                 slow down teams and hide critical data.
               </p>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+            </motion.div>
+            <motion.div
+              className="rounded-2xl border border-white/10 bg-white/5 p-6"
+              whileHover={{ y: -4, boxShadow: '0 0 20px rgba(255,255,255,0.08)' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            >
               <h3 className="mb-3 text-lg font-semibold">The Solution</h3>
               <p className="text-sm text-white/70">
                 Purpose-built software that matches your workflows, connects
                 systems, and turns data into actions.
               </p>
-            </div>
+            </motion.div>
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Why Choose Distant Lighthouse</h3>
-              <ul className="space-y-3 text-sm text-white/70">
+              <motion.ul
+                className="space-y-3 text-sm text-white/70"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ staggerChildren: 0.08 }}
+              >
                 {whyChoose.map((item) => (
-                  <li key={item}>{item}</li>
+                  <motion.li
+                    key={item}
+                    variants={{
+                      hidden: { opacity: 0, x: -15 },
+                      visible: { opacity: 1, x: 0 },
+                    }}
+                    transition={{ duration: 0.35, ease: 'easeOut' }}
+                  >
+                    {item}
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
             </div>
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Example Problems We Solve</h3>
-              <ul className="space-y-3 text-sm text-white/70">
+              <motion.ul
+                className="space-y-3 text-sm text-white/70"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ staggerChildren: 0.08 }}
+              >
                 {exampleProblems.map((item) => (
-                  <li key={item}>{item}</li>
+                  <motion.li
+                    key={item}
+                    variants={{
+                      hidden: { opacity: 0, x: -15 },
+                      visible: { opacity: 1, x: 0 },
+                    }}
+                    transition={{ duration: 0.35, ease: 'easeOut' }}
+                  >
+                    {item}
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
               <p className="text-sm text-white/70">
                 If your organization says “There must be a better way,” we can
                 build it.
               </p>
             </div>
           </div>
-        </section>
+        </motion.section>
 
-        <section id="services" className="mx-auto max-w-6xl px-6 py-20">
+        <motion.section
+          id="services"
+          className="mx-auto max-w-6xl px-6 py-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
           <div className="mb-12 space-y-4">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">
               Services
@@ -1014,21 +1082,45 @@ function App() {
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {serviceColumns.map((column, index) => (
-              <div
+              <motion.div
                 key={`service-column-${index}`}
                 className="rounded-2xl border border-white/10 bg-white/5 p-6"
+                whileHover={{ y: -4, boxShadow: '0 0 20px rgba(255,255,255,0.08)' }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                <ul className="space-y-3 text-sm text-white/70">
+                <motion.ul
+                  className="space-y-3 text-sm text-white/70"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ staggerChildren: 0.08 }}
+                >
                   {column.map((item) => (
-                    <li key={item}>{item}</li>
+                    <motion.li
+                      key={item}
+                      variants={{
+                        hidden: { opacity: 0, x: -15 },
+                        visible: { opacity: 1, x: 0 },
+                      }}
+                      transition={{ duration: 0.35, ease: 'easeOut' }}
+                    >
+                      {item}
+                    </motion.li>
                   ))}
-                </ul>
-              </div>
+                </motion.ul>
+              </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section id="workflow" className="mx-auto max-w-6xl px-6 py-20">
+        <motion.section
+          id="workflow"
+          className="mx-auto max-w-6xl px-6 py-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
           <div className="mb-12 space-y-4">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">
               Workflow
@@ -1037,7 +1129,13 @@ function App() {
               How engagements work.
             </h2>
           </div>
-          <ol className="grid gap-4 md:grid-cols-2">
+          <motion.ol
+            className="grid gap-4 md:grid-cols-2"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ staggerChildren: 0.1 }}
+          >
             {[
               'Initial consultation (no obligation)',
               'Problem definition and feature assessment',
@@ -1045,17 +1143,30 @@ function App() {
               'Development with feedback',
               'Deployment and support',
             ].map((step) => (
-              <li
+              <motion.li
                 key={step}
                 className="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-white/70"
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                whileHover={{ y: -4, boxShadow: '0 0 20px rgba(255,255,255,0.08)' }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
                 {step}
-              </li>
+              </motion.li>
             ))}
-          </ol>
-        </section>
+          </motion.ol>
+        </motion.section>
 
-        <section id="contact" className="mx-auto max-w-6xl px-6 py-20">
+        <motion.section
+          id="contact"
+          className="mx-auto max-w-6xl px-6 py-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
           <div className="rounded-3xl border border-white/10 bg-white/5 p-10">
             <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
               <div className="max-w-xl space-y-4">
@@ -1135,13 +1246,13 @@ function App() {
               </p>
             </div>
           </div>
-        </section>
+        </motion.section>
       </main>
 
       <footer className="border-t border-white/10 py-8 text-center text-xs text-white/40">
         © 2026 Distant Lighthouse. All rights reserved.
       </footer>
-    </div>
+    </div >
   )
 }
 

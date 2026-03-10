@@ -13,6 +13,10 @@
     scroll-behavior: smooth;
   }
 
+  [id] {
+    scroll-margin-top: 10rem; /* clear fixed header + top fade */
+  }
+
   body {
     @apply bg-black text-white antialiased;
   }
