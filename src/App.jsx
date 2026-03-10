@@ -18,6 +18,7 @@ function App() {
     w3Scale: 16.0,
     particleCount: 70,
     particleSpawnRate: 5,
+    particleScrollBurst: 0.1,
     particleMinRadius: 8,
     particleMaxRadius: 22,
     particleMinSpeed: 10,
@@ -144,6 +145,7 @@ function App() {
         paused={shaderDebug.paused}
         count={shaderDebug.particleCount}
         spawnRate={shaderDebug.particleSpawnRate}
+        scrollBurst={shaderDebug.particleScrollBurst}
         minRadius={shaderDebug.particleMinRadius}
         maxRadius={shaderDebug.particleMaxRadius}
         minSpeed={shaderDebug.particleMinSpeed}
@@ -374,14 +376,31 @@ function App() {
                 <input
                   className="w-32"
                   type="range"
-                  min="1"
-                  max="50"
-                  step="1"
+                  min="0"
+                  max="10"
+                  step="0.1"
                   value={shaderDebug.particleSpawnRate}
                   onChange={(event) =>
                     setShaderDebug((prev) => ({
                       ...prev,
                       particleSpawnRate: Number(event.target.value),
+                    }))
+                  }
+                />
+              </label>
+              <label className="flex items-center justify-between gap-3">
+                <span>Scroll Burst</span>
+                <input
+                  className="w-32"
+                  type="range"
+                  min="0.001"
+                  max="0.5"
+                  step="0.001"
+                  value={shaderDebug.particleScrollBurst}
+                  onChange={(event) =>
+                    setShaderDebug((prev) => ({
+                      ...prev,
+                      particleScrollBurst: Number(event.target.value),
                     }))
                   }
                 />

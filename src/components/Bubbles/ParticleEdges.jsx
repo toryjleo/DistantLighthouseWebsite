@@ -80,6 +80,7 @@ export default function ParticleEdges({
   paused = false,
   count = DEFAULTS.count,
   spawnRate = DEFAULTS.spawnRate,
+  scrollBurst = 0.1,
   minRadius = DEFAULTS.minRadius,
   maxRadius = DEFAULTS.maxRadius,
   minSpeed = DEFAULTS.minSpeed,
@@ -113,6 +114,7 @@ export default function ParticleEdges({
     configRef.current = {
       count,
       spawnRate,
+      scrollBurst,
       minRadius,
       maxRadius,
       minSpeed,
@@ -136,6 +138,7 @@ export default function ParticleEdges({
   }, [
     count,
     spawnRate,
+    scrollBurst,
     minRadius,
     maxRadius,
     minSpeed,
@@ -252,7 +255,7 @@ export default function ParticleEdges({
         // 1 particle per 10px scrolled, up to the max count limit
         const activeConfig = configRef.current
         const burstCount = Math.min(
-          Math.floor(scrollDistance * 0.1),
+          Math.floor(scrollDistance * activeConfig.scrollBurst),
           activeConfig.count
         )
         if (burstCount > 0) {
@@ -309,10 +312,7 @@ export default function ParticleEdges({
       gl.uniform2f(uResolution, width * dpr, bounds.height * dpr)
 
       // --- Particle simulation (delegated to ParticleEmitter) ---
-      // We pass a copy of the config with spawnRate=0 so it ONLY spawns via the scroll burst,
-      // not automatically every frame.
-      const runConfig = { ...config, particleSpawnRate: 0 }
-      emitter.update(delta, bounds, runConfig)
+      emitter.update(delta, bounds, config)
 
       // --- Render each particle + its horizontal mirror ---
       // The mirror creates the symmetrical "edges" effect: particles on

@@ -95,7 +95,25 @@ export default class ParticleEmitter {
     update(deltaTime, bounds, config) {
         this.syncCount(config.count)
 
-        // 1. Physics & Despawn logic
+        // 1. Ambient spawning — controlled by the Spawn Rate slider
+        const ambientRate = config.spawnRate
+        this.timeSinceLastSpawn += deltaTime
+        const spawnInterval = 1.0 / ambientRate
+        while (this.timeSinceLastSpawn >= spawnInterval) {
+            const p = this.firstUnusedParticle()
+            if (p) {
+                const data = makeParticle(bounds, config)
+                p.x = data.x
+                p.y = data.y
+                p.r = data.r
+                p.speed = data.speed
+                p.drift = data.drift
+                p.active = true
+            }
+            this.timeSinceLastSpawn -= spawnInterval
+        }
+
+        // 2. Physics & Despawn logic
         // We despawn when particles go above the top of the canvas (y < -maxRadius).
         // Since we draw upwards, the canvas coordinates might need checking. 
         // In this implementation, Y goes from 0 at top to bounds.height at bottom.
