@@ -970,6 +970,8 @@ function App() {
           </div>
         </motion.section>
 
+
+
         <motion.section
           id="problems"
           className="mx-auto max-w-6xl px-6 py-20"
@@ -980,88 +982,38 @@ function App() {
         >
           <div className="mb-12 space-y-4">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">
-              Problems
+              Sound Familiar?
             </p>
             <h2 className="text-3xl font-semibold sm:text-4xl">
-              Build what off-the-shelf software cannot.
+              Example Problems We Solve
             </h2>
           </div>
-          <div className="grid gap-8 md:grid-cols-2">
-            <motion.div
-              className="rounded-2xl border border-white/10 bg-white/5 p-6"
-              whileHover={{ y: -4, boxShadow: '0 0 20px rgba(255,255,255,0.08)' }}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            >
-              <h3 className="mb-3 text-lg font-semibold">The Problem</h3>
-              <p className="text-sm text-white/70">
-                Spreadsheet sprawl, manual paperwork, and scattered systems
-                slow down teams and hide critical data.
-              </p>
-            </motion.div>
-            <motion.div
-              className="rounded-2xl border border-white/10 bg-white/5 p-6"
-              whileHover={{ y: -4, boxShadow: '0 0 20px rgba(255,255,255,0.08)' }}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            >
-              <h3 className="mb-3 text-lg font-semibold">The Solution</h3>
-              <p className="text-sm text-white/70">
-                Purpose-built software that matches your workflows, connects
-                systems, and turns data into actions.
-              </p>
-            </motion.div>
-          </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Why Choose Distant Lighthouse</h3>
-              <motion.ul
-                className="space-y-3 text-sm text-white/70"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ staggerChildren: 0.08 }}
+          <motion.ul
+            className="space-y-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ staggerChildren: 0.1 }}
+          >
+            {exampleProblems.map((item) => (
+              <motion.li
+                key={item}
+                className="rounded-2xl border border-white/10 bg-white/5 p-6 text-lg text-white/70"
+                variants={{
+                  hidden: { opacity: 0, x: -15 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+                whileHover={{ y: -4, boxShadow: '0 0 20px rgba(255,255,255,0.08)' }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                {whyChoose.map((item) => (
-                  <motion.li
-                    key={item}
-                    variants={{
-                      hidden: { opacity: 0, x: -15 },
-                      visible: { opacity: 1, x: 0 },
-                    }}
-                    transition={{ duration: 0.35, ease: 'easeOut' }}
-                  >
-                    {item}
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Example Problems We Solve</h3>
-              <motion.ul
-                className="space-y-3 text-sm text-white/70"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ staggerChildren: 0.08 }}
-              >
-                {exampleProblems.map((item) => (
-                  <motion.li
-                    key={item}
-                    variants={{
-                      hidden: { opacity: 0, x: -15 },
-                      visible: { opacity: 1, x: 0 },
-                    }}
-                    transition={{ duration: 0.35, ease: 'easeOut' }}
-                  >
-                    {item}
-                  </motion.li>
-                ))}
-              </motion.ul>
-              <p className="text-sm text-white/70">
-                If your organization says “There must be a better way,” we can
-                build it.
-              </p>
-            </div>
-          </div>
+                {item}
+              </motion.li>
+            ))}
+          </motion.ul>
+          <p className="mt-8 text-base text-white/70">
+            If your organization says "There must be a better way," we can
+            build it.
+          </p>
         </motion.section>
 
         <motion.section
