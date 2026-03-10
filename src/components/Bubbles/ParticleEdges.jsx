@@ -13,8 +13,8 @@ import ParticleEmitter from './ParticleEmitter'
 
 // ─── Default prop values ─────────────────────────────────────────────────────
 const DEFAULTS = {
-  sideWidth: 140,         // Pixel width of the emitter band on each edge
-  count: 70,              // Number of particles (each drawn twice: left + mirror)
+  count: 70,              // Max number of pooled particles
+  spawnRate: 5,           // Particles to spawn per second
   minRadius: 8,           // Minimum sphere radius in CSS pixels
   maxRadius: 22,          // Maximum sphere radius in CSS pixels
   minSpeed: 10,           // Minimum upward speed (px/s)
@@ -78,8 +78,8 @@ export default function ParticleEdges({
   className = '',
   style,
   paused = false,
-  sideWidth = DEFAULTS.sideWidth,
   count = DEFAULTS.count,
+  spawnRate = DEFAULTS.spawnRate,
   minRadius = DEFAULTS.minRadius,
   maxRadius = DEFAULTS.maxRadius,
   minSpeed = DEFAULTS.minSpeed,
@@ -111,8 +111,8 @@ export default function ParticleEdges({
   //    the latest values without tearing down the WebGL context. ──────────
   useEffect(() => {
     configRef.current = {
-      sideWidth,
       count,
+      spawnRate,
       minRadius,
       maxRadius,
       minSpeed,
@@ -134,8 +134,8 @@ export default function ParticleEdges({
       specularPower,
     }
   }, [
-    sideWidth,
     count,
+    spawnRate,
     minRadius,
     maxRadius,
     minSpeed,
@@ -214,7 +214,6 @@ export default function ParticleEdges({
 
     // ── Resize handler ────────────────────────────────────────────────
     // Syncs the canvas backing resolution to its CSS size × DPR.
-    // On first call (empty emitter), also seeds the initial particles.
     const resize = () => {
       const rect = canvas.getBoundingClientRect()
       const width = Math.max(1, rect.width)
@@ -224,10 +223,6 @@ export default function ParticleEdges({
       canvas.height = Math.max(1, Math.floor(height * dpr))
       boundsRef.current = { width, height, dpr }
       gl.viewport(0, 0, canvas.width, canvas.height)
-
-      if (!emitter.particles.length) {
-        emitter.init({ width, height }, configRef.current)
-      }
     }
 
     resize()
@@ -278,13 +273,14 @@ export default function ParticleEdges({
       gl.uniform2f(uResolution, width * dpr, bounds.height * dpr)
 
       // --- Particle simulation (delegated to ParticleEmitter) ---
-      emitter.syncCount(bounds, config)
       emitter.update(delta, bounds, config)
 
       // --- Render each particle + its horizontal mirror ---
       // The mirror creates the symmetrical "edges" effect: particles on
       // the left are duplicated at (canvasWidth - x) on the right.
       for (const p of emitter.particles) {
+        if (!p.active) continue
+
         const radius = p.r * (1 + config.emitterZ * 0.5) * dpr
         const centerX = p.x * dpr
         const centerY = p.y * dpr
