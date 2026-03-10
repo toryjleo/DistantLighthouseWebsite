@@ -1130,7 +1130,7 @@ function App() {
             </h2>
           </div>
           <motion.ol
-            className="grid gap-4 md:grid-cols-2"
+            className="flex flex-col gap-4"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
@@ -1142,10 +1142,10 @@ function App() {
               'Feature/progress definition in work tracking software',
               'Development with feedback',
               'Deployment and support',
-            ].map((step) => (
+            ].map((step, i) => (
               <motion.li
                 key={step}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-white/70"
+                className="rounded-2xl border border-white/10 bg-white/5 p-6 text-lg text-white/70"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 },
@@ -1153,7 +1153,7 @@ function App() {
                 whileHover={{ y: -4, boxShadow: '0 0 20px rgba(255,255,255,0.08)' }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                {step}
+                <span className="font-semibold text-white">{i + 1}.</span> {step}
               </motion.li>
             ))}
           </motion.ol>
