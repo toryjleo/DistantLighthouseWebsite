@@ -47,7 +47,7 @@ function App() {
   useEffect(() => {
     let mounted = true
     // Append timestamp to bust browser cache
-    fetch(`/water-preset.json?t=${Date.now()}`)
+    fetch(`${import.meta.env.BASE_URL}water-preset.json?t=${Date.now()}`)
       .then((response) => (response.ok ? response.json() : null))
       .then((preset) => {
         if (!mounted || !preset) return
