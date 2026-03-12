@@ -7,27 +7,28 @@ This is the main marketing and portfolio website for Distant Lighthouse, built w
 - **Styling**: TailwindCSS
 - **Animations**: Framer Motion
 - **3D Graphics**: Three.js / React Three Fiber / React Three Drei (used for the background particle and water shader effects)
-- **Infrastructure as Code**: AWS CDK (TypeScript)
+- **Hosting**: GitHub Pages
+- **CI/CD**: GitHub Actions
 
-## Deployment Instructions
+## Deployment
 
-To update the live site, you need to build the production bundle of the React app and then deploy it using the AWS CDK setup located in the `infra` folder.
+The site is automatically deployed to GitHub Pages on every push to `main` via the workflow in `.github/workflows/deploy.yml`.
 
-**CRITICAL NOTE**: You MUST use the `personal` AWS profile to deploy this site.
+**To deploy changes:** simply push to `main`. The workflow will build and deploy automatically.
 
-1. **Build the production bundle:**
-   From the root of the project (`/home/tory/Documents/Programming/DistantLighthouse/Website`), run:
-   ```bash
-   npm run build
-   ```
-   *(This will bundle your latest code into the `dist` folder)*
+**One-time setup:** In the GitHub repo, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
 
-2. **Deploy it using AWS CDK:**
-   Navigate to the `infra` folder and deploy:
-   ```bash
-   cd infra
-   npx cdk deploy --profile personal
-   ```
-   *(This will grab the files from `dist`, update your S3 bucket, and invalidate the CloudFront distribution)*
+### Local Development
 
-Once the CDK deployment finishes, it may take a few minutes for the CloudFront cache to properly update, after which your changes will be live.
+```bash
+npm install
+npm run dev
+```
+
+### Custom Domain (Future)
+
+When ready to connect `distantlighthouse.com`:
+1. Add a `public/CNAME` file containing `distantlighthouse.com`
+2. Update `base` in `vite.config.js` back to `'/'`
+3. Configure DNS in Squarespace (A records + CNAME → `toryjleo.github.io`)
+4. In repo Settings → Pages, enter the custom domain and enable HTTPS
