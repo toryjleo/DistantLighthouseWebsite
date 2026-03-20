@@ -863,7 +863,7 @@ function App() {
       <main className="pt-24">
         <section
           id="hero"
-          className="relative mx-auto flex min-h-[90vh] max-w-6xl flex-col justify-center px-6 py-28"
+          className="relative mx-auto flex min-h-[70vh] max-w-6xl flex-col justify-center px-6 py-20"
         >
           <motion.div
             className="max-w-2xl space-y-6"
@@ -888,18 +888,21 @@ function App() {
                 We specialize in solving problems that off-the-shelf software
                 cannot.
               </p>
-              <p>
-                We partner with organizations of all sizes — from small local
-                businesses to technical teams — and can collaborate with our
-                partners at{' '}
-                <a
-                  href="https://goldensoft.llc"
-                  className="text-white underline decoration-white/30 underline-offset-4 transition hover:text-white"
-                >
-                  Goldensoft
-                </a>{' '}
-                when projects require additional scale.
-              </p>
+              <p>We hire top talent from:</p>
+              <div className="flex flex-wrap items-center gap-6">
+                <span className="inline-flex items-center rounded bg-white px-2 py-1.5">
+                  <img
+                    src="/Badges/AMD_Logo.svg.png"
+                    alt="AMD"
+                    className="h-8 w-auto"
+                  />
+                </span>
+                <img
+                  src="/Badges/ANSYS Logo.png"
+                  alt="ANSYS"
+                  className="h-10 w-auto"
+                />
+              </div>
             </div>
             <div className="flex flex-wrap gap-4">
               <a
@@ -929,10 +932,10 @@ function App() {
         >
           <div className="mb-12 space-y-4">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">
-              Custom Projects
+              Customer Projects
             </p>
             <h2 className="text-3xl font-semibold sm:text-4xl">
-              Easily expandable projects with bespoke theming.
+              
             </h2>
           </div>
           <div className="space-y-10">
