@@ -24,7 +24,7 @@ export default function ProjectCarousel({ media }) {
     return (
         <div className="flex flex-col gap-3">
             {/* Main View */}
-            <div className="w-full aspect-video bg-black/10 rounded-lg overflow-hidden border border-black/10 shadow-lg relative bg-black">
+            <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] bg-black/10 rounded-lg overflow-hidden border border-black/10 shadow-lg relative bg-black">
                 {activeItem.type === 'video' ? (
                     <>
                         <video
@@ -35,7 +35,7 @@ export default function ProjectCarousel({ media }) {
                             loop
                             muted={isMuted}
                             playsInline
-                            className="w-full h-full object-contain transition-opacity duration-500 bg-black/50" // Changed object-cover to object-contain
+                            className="w-full h-full object-contain transition-opacity duration-500" // Changed object-cover to object-contain
                         />
                         <div className="absolute bottom-4 right-4 flex gap-2 z-10"> {/* Wrapper div for buttons */}
                             <button
@@ -72,7 +72,7 @@ export default function ProjectCarousel({ media }) {
                         key={activeItem.src}
                         src={activeItem.src}
                         alt={activeItem.label}
-                        className="w-full h-full object-contain transition-opacity duration-500 bg-black/50"
+                        className="w-full h-full object-contain transition-opacity duration-500"
                     />
                 )}
             </div>
