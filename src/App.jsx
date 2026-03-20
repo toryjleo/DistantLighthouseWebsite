@@ -916,7 +916,7 @@ function App() {
             </h2>
           </div>
           <div className="space-y-10">
-            {projects.map((project) => (
+            {projects.map((project) => ( 
               <ProjectCard
                 key={project.name}
                 name={project.name}
