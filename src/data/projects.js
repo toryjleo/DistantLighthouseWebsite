@@ -19,32 +19,32 @@ const projects = [
       {
         type: 'video',
         src: '/YBWY/YBWY Promo v2 (no subtitles).mp4',
-        label: 'Workflow Demo'
+        label: 'Pure App Video'
       },
       {
         type: 'image',
         src: '/YBWY/YBWY-DASHBOARD.png',
-        label: 'Screenshot 01'
+        label: 'Login Dashboard'
       },
       {
         type: 'image',
         src: '/YBWY/YBWY-WEIGHTENTRY.png',
-        label: 'Screenshot 02'
+        label: 'Daily Weight Entry Screen'
       },
       {
         type: 'image',
         src: '/YBWY/YBWY-LEADERBOARDS.png',
-        label: 'Screenshot 04'
+        label: 'Leaderboards'
       },
       {
         type: 'image',
         src: '/YBWY/YBWY-WEIGHT-GRAPH.png',
-        label: 'Screenshot 05'
+        label: 'Weight Tracking'
       },
       {
         type: 'image',
         src: '/YBWY/YBWY-ADMIN-CONSOLE.png',
-        label: 'Screenshot 03'
+        label: 'Customer Administrative Console'
       },
     ],
   },
