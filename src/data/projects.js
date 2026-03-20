@@ -1,13 +1,20 @@
 const projects = [
   {
     name: 'Your Best Week Yet',
-    description:
+    description: [
       'A custom platform that blends automation, data clarity, and a tailored workflow for fast-moving teams.',
+      'Built to keep weekly progress visible, reduce manual admin, and motivate consistent habits.',
+    ],
     details: 'Custom theming with two brand colors.',
     theme: {
       primary: '#fafafaff',
       secondary: '#22c55e',
       text: '#801D18',
+    },
+    links: {
+      googlePlay: 'https://play.google.com/store/apps/details?id=com.skyforgedsoftware.bestweek&hl=en',
+      ios: 'https://apps.apple.com/us/app/your-best-week-yet/id6753602394',
+      website: 'https://mohawkvalleywellness.com/newsletter/',
     },
     media: [
       {

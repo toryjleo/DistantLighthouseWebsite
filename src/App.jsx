@@ -924,6 +924,7 @@ function App() {
                 details={project.details}
                 theme={project.theme}
                 media={project.media}
+                links={project.links}
               />
             ))}
           </div>
