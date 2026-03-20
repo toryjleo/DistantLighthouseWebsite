@@ -2,10 +2,9 @@ const projects = [
   {
     name: 'Your Best Week Yet',
     description: [
-      'A custom platform that blends automation, data clarity, and a tailored workflow for fast-moving teams.',
-      'Built to keep weekly progress visible, reduce manual admin, and motivate consistent habits.',
+      'Built for Mowhawk Valley Wellness, "Your Best Week Yet" automates data collection for our customer\'s fitness program.',
     ],
-    details: 'Custom theming with two brand colors.',
+    details: 'Users need only log in daily and answer a handful of qestions to track their health. The data gets uploaded and allows our customer to monitor the progress for his fitness programs all across the wider Finger Lakes region.',
     theme: {
       primary: '#fafafaff',
       secondary: '#22c55e',
