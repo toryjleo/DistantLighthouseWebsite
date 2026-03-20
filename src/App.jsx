@@ -96,9 +96,9 @@ function App() {
         'A custom platform that blends automation, data clarity, and a tailored workflow for fast-moving teams.',
       details: 'Custom theming with two brand colors.',
       theme: {
-        primary: '#1eff00ff',
+        primary: '#fafafaff',
         secondary: '#e41111ff',
-        text: '#1f1207',
+        text: '#801D18',
       },
       media: [
         {

@@ -24,7 +24,7 @@ export default function ProjectCarousel({ media }) {
     return (
         <div className="flex flex-col gap-3">
             {/* Main View */}
-            <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] bg-black/10 rounded-lg overflow-hidden border border-black/10 shadow-lg relative bg-black">
+            <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden relative bg-transparent">
                 {activeItem.type === 'video' ? (
                     <>
                         <video

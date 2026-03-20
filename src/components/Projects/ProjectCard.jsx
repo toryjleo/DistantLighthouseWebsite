@@ -31,13 +31,6 @@ export default function ProjectCard({ name, description, details, theme, media }
                     <ProjectCarousel media={media} />
                 </div>
             </div>
-
-            {/* Decorative Glow Elements */}
-            <div
-                className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none opacity-50"
-                style={{ backgroundColor: theme.secondary }}
-            />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/5 rounded-full blur-2xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
         </article>
     );
 }
