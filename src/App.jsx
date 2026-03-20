@@ -7,7 +7,6 @@ import ProjectCard from './components/Projects/ProjectCard'
 import projects from './data/projects'
 
 function App() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [shaderDebug, setShaderDebug] = useState({
     paused: false,
     showUV: false,
@@ -805,8 +804,8 @@ function App() {
           </button>
         </div>
       )}
-      <header className="navbar-scene fixed left-0 right-0 top-0 z-40 overflow-hidden relative">
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-24">
+      <header className="navbar-scene fixed left-0 right-0 top-0 z-40 overflow-hidden">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24">
           <WaterShader
             paused={shaderDebug.paused}
             timeScale={shaderDebug.timeScale}
@@ -820,11 +819,11 @@ function App() {
             className="h-full w-full"
           />
         </div>
-        <div className="mx-auto max-w-6xl px-6 pt-4 text-[11px] italic text-black/70 relative z-10">
+        <div className="mx-auto max-w-6xl px-6 pt-4 text-[11px] italic text-black/70">
           “A distant lighthouse guides ships safely through unfamiliar waters.
           Contact us today!”
         </div>
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 pb-4 pt-4 relative z-10">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 pb-6 pt-4">
           <div className="flex items-center gap-4">
             <motion.img
               src={logoMark}
@@ -838,15 +837,6 @@ function App() {
               Distant Lighthouse
             </div>
           </div>
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen((open) => !open)}
-            className="sm:hidden rounded-full border border-black/20 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-black/80 transition hover:border-black/40"
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-nav"
-          >
-            Menu
-          </button>
           <div className="hidden items-center gap-6 text-xs uppercase tracking-[0.2em] text-black/70 sm:flex">
             <a href="#hero" className="hover:text-black">
               Home
@@ -868,31 +858,6 @@ function App() {
             </a>
           </div>
         </nav>
-        <div
-          id="mobile-nav"
-          className={`${mobileMenuOpen ? 'block' : 'hidden'} sm:hidden px-6 pb-6 relative z-10`}
-        >
-          <div className="flex flex-col gap-3 rounded-2xl border border-black/10 bg-white/70 px-4 py-4 text-[11px] uppercase tracking-[0.25em] text-black/80">
-            <a href="#hero" className="hover:text-black" onClick={() => setMobileMenuOpen(false)}>
-              Home
-            </a>
-            <a href="#projects" className="hover:text-black" onClick={() => setMobileMenuOpen(false)}>
-              Projects
-            </a>
-            <a href="#problems" className="hover:text-black" onClick={() => setMobileMenuOpen(false)}>
-              Problems
-            </a>
-            <a href="#services" className="hover:text-black" onClick={() => setMobileMenuOpen(false)}>
-              Services
-            </a>
-            <a href="#workflow" className="hover:text-black" onClick={() => setMobileMenuOpen(false)}>
-              Workflow
-            </a>
-            <a href="#contact" className="hover:text-black" onClick={() => setMobileMenuOpen(false)}>
-              Contact
-            </a>
-          </div>
-        </div>
       </header>
 
       <main className="pt-24">
