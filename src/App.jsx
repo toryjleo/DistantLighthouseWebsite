@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import logoMark from './assets/DistantLightHouse1.png'
 import WaterShader from './components/Water/WaterShader'
 import ParticleEdges from './components/Bubbles/ParticleEdges'
+import ProjectCard from './components/Projects/ProjectCard'
 
 function App() {
   const [shaderDebug, setShaderDebug] = useState({
@@ -93,15 +94,28 @@ function App() {
       name: 'YBWY',
       description:
         'A custom platform that blends automation, data clarity, and a tailored workflow for fast-moving teams.',
+      details: 'Custom theming with two brand colors.',
       theme: {
         primary: '#f8efe2',
         secondary: '#e7a14f',
         text: '#1f1207',
       },
       media: [
-        { label: 'Screenshot 01' },
-        { label: 'Screenshot 02' },
-        { label: 'Workflow Demo' },
+        {
+          type: 'video',
+          src: 'https://vjs.zencdn.net/v/oceans.mp4',
+          label: 'Workflow Demo'
+        },
+        {
+          type: 'image',
+          src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+          label: 'Screenshot 01'
+        },
+        {
+          type: 'image',
+          src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop',
+          label: 'Screenshot 02'
+        },
       ],
     },
   ]
@@ -933,42 +947,14 @@ function App() {
           </div>
           <div className="space-y-10">
             {projects.map((project) => (
-              <article
+              <ProjectCard
                 key={project.name}
-                className="rounded-lg border p-8"
-                style={{
-                  background: `linear-gradient(135deg, ${project.theme.primary}, ${project.theme.secondary})`,
-                  borderColor: project.theme.secondary,
-                  color: project.theme.text,
-                }}
-              >
-                <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-                  <div className="max-w-2xl space-y-4">
-                    <p className="text-xs uppercase tracking-[0.4em] text-black/60">
-                      Featured Project
-                    </p>
-                    <h3 className="text-2xl font-semibold sm:text-3xl">
-                      {project.name}
-                    </h3>
-                    <p className="text-base text-black/70">
-                      {project.description}
-                    </p>
-                  </div>
-                  <div className="text-sm text-black/60">
-                    Custom theming with two brand colors.
-                  </div>
-                </div>
-                <div className="mt-6 flex gap-4 overflow-x-auto pb-2">
-                  {project.media.map((item) => (
-                    <div
-                      key={item.label}
-                      className="min-w-[220px] flex-1 rounded-md border border-black/10 bg-white/70 p-4 text-sm text-black/70"
-                    >
-                      {item.label}
-                    </div>
-                  ))}
-                </div>
-              </article>
+                name={project.name}
+                description={project.description}
+                details={project.details}
+                theme={project.theme}
+                media={project.media}
+              />
             ))}
           </div>
         </motion.section>
