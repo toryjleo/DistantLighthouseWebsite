@@ -12,11 +12,11 @@ This is the main marketing and portfolio website for Distant Lighthouse, built w
 
 ## Deployment
 
-The site is automatically deployed to GitHub Pages on every push to `main` via the workflow in `.github/workflows/deploy.yml`.
+The site is deployed to GitHub Pages via GitHub Actions. The workflow in `.github/workflows/deploy.yml` builds the Vite app and publishes the `dist` artifact.
 
-**To deploy changes:** simply push to `main`. The workflow will build and deploy automatically.
+**To deploy changes:** push to `master`. The workflow will build and deploy automatically.
 
-**One-time setup:** In the GitHub repo, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
+**Required settings:** In the GitHub repo, go to **Settings → Pages** and set **Source** to **GitHub Actions** (not “Deploy from branch”).
 
 ### Local Development
 
@@ -25,10 +25,6 @@ npm install
 npm run dev
 ```
 
-### Custom Domain (Future)
+### Custom Domain
 
-When ready to connect `distantlighthouse.com`:
-1. Add a `public/CNAME` file containing `distantlighthouse.com`
-2. Update `base` in `vite.config.js` back to `'/'`
-3. Configure DNS in Squarespace (A records + CNAME → `toryjleo.github.io`)
-4. In repo Settings → Pages, enter the custom domain and enable HTTPS
+The live site uses a custom domain: `www.distantlighthouse.com`. The `public/CNAME` file is already set up, and Pages should show that domain with HTTPS enabled.
