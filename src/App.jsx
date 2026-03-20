@@ -1123,12 +1123,15 @@ function App() {
                   </a>
                 </div>
                 <div className="pt-4 text-sm text-white/60">
-                  Social:{' '}
                   <a
-                    href="https://linkedin.com/distant-lighthouse-llc"
-                    className="text-white underline decoration-white/30 underline-offset-4 transition hover:text-white"
+                    href="https://linkedin.com/company/distant-lighthouse-llc/"
+                    className="inline-flex items-center text-white underline decoration-white/30 underline-offset-4 transition hover:text-white"
                   >
-                    LinkedIn
+                    <img
+                      src="/Badges/LI-Logo.png"
+                      alt="LinkedIn"
+                      className="h-4 w-auto"
+                    />
                   </a>
                 </div>
               </div>
