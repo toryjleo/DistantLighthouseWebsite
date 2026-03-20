@@ -118,14 +118,6 @@ function App() {
     'Local understanding — We work with real-world businesses, not just tech companies.',
   ]
 
-  const exampleProblems = [
-    '“We track everything in spreadsheets and it’s breaking down.”',
-    '“Our staff wastes hours on manual paperwork.”',
-    '“We need a system tailored to our exact workflow.”',
-    '“We have data but no way to use it.”',
-    '“We need an app to log field data.”',
-  ]
-
   const serviceColumns = [
     [
       'Custom internal tools',
@@ -820,8 +812,7 @@ function App() {
           />
         </div>
         <div className="mx-auto max-w-6xl px-6 pt-4 text-[11px] italic text-black/70">
-          “A distant lighthouse guides ships safely through unfamiliar waters.
-          Contact us today!”
+          “A distant lighthouse guides ships safely through unfamiliar waters.”
         </div>
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 pb-6 pt-4">
           <div className="flex items-center gap-4">
@@ -843,9 +834,6 @@ function App() {
             </a>
             <a href="#projects" className="hover:text-black">
               Projects
-            </a>
-            <a href="#problems" className="hover:text-black">
-              Problems
             </a>
             <a href="#services" className="hover:text-black">
               Services
@@ -875,7 +863,7 @@ function App() {
               Mercer, Maine • Software Contracting
             </p>
             <h1 className="text-3xl font-semibold leading-tight sm:text-4xl">
-              This website was created in 3 hours.
+              Clear, Durable Custom Software.
             </h1>
             <div className="space-y-4 text-base text-white/70 sm:text-lg">
               <p>
@@ -954,50 +942,6 @@ function App() {
         </motion.section>
 
 
-
-        <motion.section
-          id="problems"
-          className="mx-auto max-w-6xl px-6 py-20"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          <div className="mb-12 space-y-4">
-            <p className="text-xs uppercase tracking-[0.4em] text-white/50">
-              Sound Familiar?
-            </p>
-            <h2 className="text-3xl font-semibold sm:text-4xl">
-              Example Problems We Solve
-            </h2>
-          </div>
-          <motion.ul
-            className="space-y-4"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ staggerChildren: 0.1 }}
-          >
-            {exampleProblems.map((item) => (
-              <motion.li
-                key={item}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6 text-lg text-white/70"
-                variants={{
-                  hidden: { opacity: 0, x: -15 },
-                  visible: { opacity: 1, x: 0 },
-                }}
-                whileHover={{ y: -4, boxShadow: '0 0 20px rgba(255,255,255,0.08)' }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                {item}
-              </motion.li>
-            ))}
-          </motion.ul>
-          <p className="mt-8 text-base text-white/70">
-            If your organization says "There must be a better way," we can
-            build it.
-          </p>
-        </motion.section>
 
         <motion.section
           id="services"
