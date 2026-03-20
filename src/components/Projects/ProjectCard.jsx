@@ -51,17 +51,12 @@ function renderLinks(links, accentColor) {
             )}
 
             {links.website && (
-                <a
-                    href={links.website}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center rounded-full border px-4 py-2 text-[10px] uppercase tracking-[0.35em] font-semibold transition hover:opacity-90"
-                    style={{
-                        borderColor: accentColor,
-                        color: accentColor,
-                    }}
-                >
-                    Website
+                <a href={links.website} target="_blank" rel="noreferrer">
+                    <img
+                        src="/Badges/mohawk_valley_wellness_header.png"
+                        alt="Mohawk Valley Wellness"
+                        className="h-10 w-auto"
+                    />
                 </a>
             )}
         </div>
