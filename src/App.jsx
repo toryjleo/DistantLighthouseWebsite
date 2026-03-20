@@ -103,18 +103,23 @@ function App() {
       media: [
         {
           type: 'video',
-          src: '/YBWY Promo v2 (no subtitles).mp4',
+          src: '/YBWY/YBWY Promo v2 (no subtitles).mp4',
           label: 'Workflow Demo'
         },
         {
           type: 'image',
-          src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+          src: '/YBWY/YBWY-DASHBOARD.png',
           label: 'Screenshot 01'
         },
         {
           type: 'image',
-          src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop',
+          src: '/YBWY/YBWY-WEIGHTENTRY.png',
           label: 'Screenshot 02'
+        },
+        {
+          type: 'image',
+          src: '/YBWY/YBWY-ADMIN-CONSOLE.png',
+          label: 'Screenshot 03'
         },
       ],
     },
