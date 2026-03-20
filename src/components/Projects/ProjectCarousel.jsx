@@ -3,16 +3,16 @@ import React, { useState, useRef } from 'react';
 export default function ProjectCarousel({ media }) {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isMuted, setIsMuted] = useState(true);
-    const videoRef = useRef(null);
+    const mediaRef = useRef(null);
 
     const handleFullscreen = () => {
-        if (videoRef.current) {
-            if (videoRef.current.requestFullscreen) {
-                videoRef.current.requestFullscreen();
-            } else if (videoRef.current.webkitRequestFullscreen) {
-                videoRef.current.webkitRequestFullscreen();
-            } else if (videoRef.current.msRequestFullscreen) {
-                videoRef.current.msRequestFullscreen();
+        if (mediaRef.current) {
+            if (mediaRef.current.requestFullscreen) {
+                mediaRef.current.requestFullscreen();
+            } else if (mediaRef.current.webkitRequestFullscreen) {
+                mediaRef.current.webkitRequestFullscreen();
+            } else if (mediaRef.current.msRequestFullscreen) {
+                mediaRef.current.msRequestFullscreen();
             }
         }
     };
@@ -28,7 +28,7 @@ export default function ProjectCarousel({ media }) {
                 {activeItem.type === 'video' ? (
                     <>
                         <video
-                            ref={videoRef} // Assign the ref to the video element
+                            ref={mediaRef} // Assign the ref to the video element
                             key={activeItem.src}
                             src={activeItem.src}
                             autoPlay
@@ -68,12 +68,27 @@ export default function ProjectCarousel({ media }) {
                         </div>
                     </>
                 ) : (
-                    <img
-                        key={activeItem.src}
-                        src={activeItem.src}
-                        alt={activeItem.label}
-                        className="w-full h-full object-contain transition-opacity duration-500"
-                    />
+                    <>
+                        <img
+                            ref={mediaRef}
+                            key={activeItem.src}
+                            src={activeItem.src}
+                            alt={activeItem.label}
+                            className="w-full h-full object-contain transition-opacity duration-500"
+                        />
+                        <div className="absolute bottom-4 right-4 flex gap-2 z-10">
+                            <button
+                                onClick={handleFullscreen}
+                                className="bg-black/60 hover:bg-black/80 text-white rounded-full p-2.5 transition-colors backdrop-blur-sm"
+                                title="Fullscreen"
+                                aria-label="Fullscreen image"
+                            >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </>
                 )}
             </div>
 
