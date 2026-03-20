@@ -91,19 +91,19 @@ function App() {
 
   const projects = [
     {
-      name: 'YBWY',
+      name: 'Your Best Week Yet',
       description:
         'A custom platform that blends automation, data clarity, and a tailored workflow for fast-moving teams.',
       details: 'Custom theming with two brand colors.',
       theme: {
-        primary: '#f8efe2',
-        secondary: '#e7a14f',
+        primary: '#1eff00ff',
+        secondary: '#e41111ff',
         text: '#1f1207',
       },
       media: [
         {
           type: 'video',
-          src: 'https://vjs.zencdn.net/v/oceans.mp4',
+          src: '/YBWY Promo v2 (no subtitles).mp4',
           label: 'Workflow Demo'
         },
         {
