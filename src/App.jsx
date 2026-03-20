@@ -97,7 +97,7 @@ function App() {
       details: 'Custom theming with two brand colors.',
       theme: {
         primary: '#fafafaff',
-        secondary: '#e41111ff',
+        secondary: '#22c55e',
         text: '#801D18',
       },
       media: [
