@@ -90,6 +90,26 @@ function App() {
     URL.revokeObjectURL(url)
   }
 
+  const handleConsultSubmit = (event) => {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const name = String(formData.get('name') ?? '').trim()
+    const email = String(formData.get('email') ?? '').trim()
+    const message = String(formData.get('message') ?? '').trim()
+    const bodyLines = [
+      `Name: ${name || 'Not provided'}`,
+      `Email: ${email || 'Not provided'}`,
+      '',
+      message || 'No project details provided.',
+    ]
+    const mailto = [
+      'mailto:toryjleo@distantlighthouse.com',
+      `?subject=${encodeURIComponent('Consultation request')}`,
+      `&body=${encodeURIComponent(bodyLines.join('\n'))}`,
+    ].join('')
+    window.location.href = mailto
+  }
+
   const whyChoose = [
     'Personal attention — You work directly with the engineer building your system.',
     'Custom solutions — Designed specifically for your business, not generic templates.',
@@ -1112,24 +1132,27 @@ function App() {
                   </a>
                 </div>
               </div>
-              <form className="w-full max-w-md space-y-4">
+              <form className="w-full max-w-md space-y-4" onSubmit={handleConsultSubmit}>
                 <input
                   type="text"
                   placeholder="Name"
+                  name="name"
                   className="w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-white/40"
                 />
                 <input
                   type="email"
                   placeholder="Email"
+                  name="email"
                   className="w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-white/40"
                 />
                 <textarea
                   rows="4"
                   placeholder="Tell us about your project"
+                  name="message"
                   className="w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-white/40"
                 />
                 <button
-                  type="button"
+                  type="submit"
                   className="w-full rounded-full border border-white/20 px-6 py-3 text-xs uppercase tracking-[0.3em] text-white transition hover:border-white/60"
                 >
                   Request a consult
