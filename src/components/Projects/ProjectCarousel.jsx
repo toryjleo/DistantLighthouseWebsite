@@ -84,7 +84,7 @@ export default function ProjectCarousel({ media }) {
                         key={idx}
                         onClick={() => setActiveIndex(idx)}
                         onMouseEnter={() => setActiveIndex(idx)}
-                        className={`flex-shrink-0 w-32 aspect-video rounded border overflow-hidden transition-all duration-200 ${idx === activeIndex
+                        className={`relative flex-shrink-0 w-32 aspect-video rounded border overflow-hidden transition-all duration-200 ${idx === activeIndex
                             ? 'border-white/80 ring-2 ring-white/50 opacity-100 scale-[1.02]'
                             : 'border-transparent opacity-60 hover:opacity-100 hover:border-white/40'
                             }`}
