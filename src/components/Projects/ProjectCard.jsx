@@ -77,12 +77,20 @@ export default function ProjectCard({ name, description, details, theme, media, 
                 color: theme.text,
             }}
         >
-            <div className="flex flex-col gap-8 lg:flex-row lg:items-stretch lg:justify-between relative z-10">
-                <div className="max-w-xl flex flex-col gap-8">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:grid-rows-[auto_1fr] lg:items-stretch relative z-10">
+                <div className="max-w-xl">
                     <p className="text-xs uppercase tracking-[0.4em] opacity-60 font-semibold">
                         Featured Project
                     </p>
-                    <h3 className="text-3xl font-bold sm:text-5xl tracking-tight">{name}</h3>
+                    <h3 className="mt-4 text-3xl font-bold sm:text-5xl tracking-tight">{name}</h3>
+                </div>
+
+                {/* Carousel Area */}
+                <div className="w-full lg:col-start-2 lg:row-span-2 lg:max-w-2xl">
+                    <ProjectCarousel media={media} />
+                </div>
+
+                <div className="max-w-xl flex h-full flex-col gap-8 lg:row-start-2">
                     <div className="space-y-4 text-balance">
                         {renderDescription(description)}
                     </div>
@@ -94,11 +102,6 @@ export default function ProjectCard({ name, description, details, theme, media, 
                     <div className="mt-auto">
                         {renderLinks(links, theme.secondary)}
                     </div>
-                </div>
-
-                {/* Carousel Area */}
-                <div className="w-full lg:w-[50%] lg:max-w-2xl shrink-0 mt-8 lg:mt-0 xl:w-[55%]">
-                    <ProjectCarousel media={media} />
                 </div>
             </div>
         </article>
