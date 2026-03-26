@@ -807,16 +807,16 @@ function App() {
         </div>
       </header>
 
-      <aside className="fixed left-0 top-28 z-50 flex h-[calc(100vh-7rem)] w-20 flex-col items-center justify-between border-r border-white/10 bg-black/60 py-6 backdrop-blur sm:top-32 sm:h-[calc(100vh-8rem)] sm:w-28">
+      <aside className="fixed left-0 top-0 z-50 flex h-screen w-20 flex-col items-center justify-between border-r border-white/10 py-6 sm:w-24">
         <div />
-        <nav className="flex flex-col items-center gap-5 text-[10px] uppercase tracking-[0.35em]">
+        <nav className="flex w-full flex-col items-center gap-4 px-2 text-[10px] uppercase tracking-[0.12em] text-white/80 sm:px-2 sm:text-[11px] sm:tracking-[0.22em]">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               end={item.end}
               className={({ isActive }) =>
-                `text-center transition ${isActive ? 'text-white' : 'text-white/60 hover:text-white'}`
+                `text-center leading-tight transition ${isActive ? 'text-white' : 'text-white/60 hover:text-white'}`
               }
             >
               {item.label}
