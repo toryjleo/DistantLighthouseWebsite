@@ -8,11 +8,14 @@ import Projects from './pages/Projects'
 import Services from './pages/Services'
 import Contact from './pages/Contact'
 import Quote from './pages/Quote'
+import Newsletter from './pages/Newsletter'
+import NewsletterPost from './pages/NewsletterPost'
 
 const navItems = [
   { to: '/', label: 'About', end: true },
   { to: '/services', label: 'Services' },
   { to: '/projects', label: 'Projects' },
+  { to: '/newsletter', label: 'Newsletter' },
   { to: '/contact', label: 'Contact' },
 ]
 
@@ -833,6 +836,8 @@ function App() {
           <Route path="/" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/newsletter" element={<Newsletter />} />
+          <Route path="/newsletter/:slug" element={<NewsletterPost />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/quote" element={<Quote />} />
           <Route path="*" element={<About />} />
