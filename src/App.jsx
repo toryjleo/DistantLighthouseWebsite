@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
-import logoMark from './assets/DistantLightHouse1.png'
 import WaterShader from './components/Water/WaterShader'
 import ParticleEdges from './components/Bubbles/ParticleEdges'
 import About from './pages/About'
@@ -16,6 +15,8 @@ const navItems = [
   { to: '/projects', label: 'Projects' },
   { to: '/contact', label: 'Contact' },
 ]
+
+const logoMark = encodeURI('/Distant Lighthouse_ICON - B&W.jpg')
 
 function ScrollToTop() {
   const { pathname } = useLocation()
