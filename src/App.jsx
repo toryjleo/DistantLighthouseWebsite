@@ -807,7 +807,7 @@ function App() {
         </div>
       </header>
 
-      <aside className="fixed left-0 top-0 z-50 flex h-screen w-20 flex-col items-center justify-between border-r border-white/10 bg-black/60 py-6 backdrop-blur sm:w-28">
+      <aside className="fixed left-0 top-28 z-50 flex h-[calc(100vh-7rem)] w-20 flex-col items-center justify-between border-r border-white/10 bg-black/60 py-6 backdrop-blur sm:top-32 sm:h-[calc(100vh-8rem)] sm:w-28">
         <div />
         <nav className="flex flex-col items-center gap-5 text-[10px] uppercase tracking-[0.35em]">
           {navItems.map((item) => (
