@@ -1,10 +1,30 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import logoMark from './assets/DistantLightHouse1.png'
 import WaterShader from './components/Water/WaterShader'
 import ParticleEdges from './components/Bubbles/ParticleEdges'
-import ProjectCard from './components/Projects/ProjectCard'
-import projects from './data/projects'
+import About from './pages/About'
+import Projects from './pages/Projects'
+import Services from './pages/Services'
+import Contact from './pages/Contact'
+
+const navItems = [
+  { to: '/', label: 'About', end: true },
+  { to: '/services', label: 'Services' },
+  { to: '/projects', label: 'Projects' },
+  { to: '/contact', label: 'Contact' },
+]
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+  return null
+}
 
 function App() {
   const [shaderDebug, setShaderDebug] = useState({
@@ -31,8 +51,8 @@ function App() {
     particleSwaySpeed: 2,
     particleSwayRandom: 0.5,
     particleOpacity: 0.25,
-    particleEmitterX: 70, // 70 pixels from the edge (center of the old column width of 140)
-    particleEmitterY: 1,  // Bottom of the screen
+    particleEmitterX: 70,
+    particleEmitterY: 1,
     particleEmitterZ: 0,
     particleRotation: 0,
     particleLightX: 0.6,
@@ -48,7 +68,6 @@ function App() {
 
   useEffect(() => {
     let mounted = true
-    // Append timestamp to bust browser cache
     fetch(`${import.meta.env.BASE_URL}water-preset.json?t=${Date.now()}`)
       .then((response) => (response.ok ? response.json() : null))
       .then((preset) => {
@@ -90,60 +109,9 @@ function App() {
     URL.revokeObjectURL(url)
   }
 
-  const handleConsultSubmit = (event) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    const name = String(formData.get('name') ?? '').trim()
-    const email = String(formData.get('email') ?? '').trim()
-    const message = String(formData.get('message') ?? '').trim()
-    const bodyLines = [
-      `Name: ${name || 'Not provided'}`,
-      `Email: ${email || 'Not provided'}`,
-      '',
-      message || 'No project details provided.',
-    ]
-    const mailto = [
-      'mailto:toryjleo@distantlighthouse.com',
-      `?subject=${encodeURIComponent('Consultation request')}`,
-      `&body=${encodeURIComponent(bodyLines.join('\n'))}`,
-    ].join('')
-    window.location.href = mailto
-  }
-
-  const whyChoose = [
-    'Personal attention — You work directly with the engineer building your system.',
-    'Custom solutions — Designed specifically for your business, not generic templates.',
-    'Technical depth — Capable of handling complex or unusual requirements.',
-    'Clear communication — No jargon required.',
-    'Local understanding — We work with real-world businesses, not just tech companies.',
-  ]
-
-  const serviceColumns = [
-    [
-      'Custom internal tools',
-      'Inventory management',
-      'Data dashboards & reporting tools',
-      'Customer portals',
-      'Booking and reservation systems',
-    ],
-    [
-      'iOS and Android apps',
-      'Windows / macOS / Linux applications',
-      'API development',
-      'System integrations',
-      'Data migration and cleanup',
-    ],
-    [
-      'Reporting automation',
-      'Embedded systems & hardware software',
-      'Simulation and visualization tools',
-      'Custom algorithms',
-    ],
-  ]
-
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Top fade — black gradient so bubbles dissolve smoothly */}
+      <ScrollToTop />
       <div
         className="pointer-events-none fixed inset-x-0 top-0 z-[31] h-[30vh]"
         style={{
@@ -406,9 +374,9 @@ function App() {
                 <input
                   className="w-32"
                   type="range"
-                  min="0.001"
-                  max="0.5"
-                  step="0.001"
+                  min="0"
+                  max="1"
+                  step="0.01"
                   value={shaderDebug.particleScrollBurst}
                   onChange={(event) =>
                     setShaderDebug((prev) => ({
@@ -419,12 +387,12 @@ function App() {
                 />
               </label>
               <label className="flex items-center justify-between gap-3">
-                <span>Size min</span>
+                <span>Min Radius</span>
                 <input
                   className="w-32"
                   type="range"
                   min="2"
-                  max="150"
+                  max="30"
                   step="1"
                   value={shaderDebug.particleMinRadius}
                   onChange={(event) =>
@@ -436,12 +404,12 @@ function App() {
                 />
               </label>
               <label className="flex items-center justify-between gap-3">
-                <span>Size max</span>
+                <span>Max Radius</span>
                 <input
                   className="w-32"
                   type="range"
                   min="4"
-                  max="200"
+                  max="60"
                   step="1"
                   value={shaderDebug.particleMaxRadius}
                   onChange={(event) =>
@@ -453,12 +421,12 @@ function App() {
                 />
               </label>
               <label className="flex items-center justify-between gap-3">
-                <span>Speed min</span>
+                <span>Min Speed</span>
                 <input
                   className="w-32"
                   type="range"
-                  min="2"
-                  max="300"
+                  min="1"
+                  max="50"
                   step="1"
                   value={shaderDebug.particleMinSpeed}
                   onChange={(event) =>
@@ -470,12 +438,12 @@ function App() {
                 />
               </label>
               <label className="flex items-center justify-between gap-3">
-                <span>Speed max</span>
+                <span>Max Speed</span>
                 <input
                   className="w-32"
                   type="range"
-                  min="4"
-                  max="500"
+                  min="1"
+                  max="80"
                   step="1"
                   value={shaderDebug.particleMaxSpeed}
                   onChange={(event) =>
@@ -492,7 +460,7 @@ function App() {
                   className="w-32"
                   type="range"
                   min="0"
-                  max="40"
+                  max="60"
                   step="1"
                   value={shaderDebug.particleDrift}
                   onChange={(event) =>
@@ -504,12 +472,12 @@ function App() {
                 />
               </label>
               <label className="flex items-center justify-between gap-3">
-                <span>Sway Amount</span>
+                <span>Sway</span>
                 <input
                   className="w-32"
                   type="range"
                   min="0"
-                  max="60"
+                  max="50"
                   step="1"
                   value={shaderDebug.particleSwayAmount}
                   onChange={(event) =>
@@ -525,8 +493,8 @@ function App() {
                 <input
                   className="w-32"
                   type="range"
-                  min="0.1"
-                  max="10"
+                  min="0"
+                  max="6"
                   step="0.1"
                   value={shaderDebug.particleSwaySpeed}
                   onChange={(event) =>
@@ -555,54 +523,11 @@ function App() {
                 />
               </label>
               <label className="flex items-center justify-between gap-3">
-                <span>Spawn X (px)</span>
-                <input
-                  className="w-32"
-                  type="range"
-                  min="0"
-                  max="500"
-                  step="1"
-                  value={shaderDebug.particleEmitterX}
-                  onChange={(event) =>
-                    setShaderDebug((prev) => ({
-                      ...prev,
-                      particleEmitterX: Number(event.target.value),
-                    }))
-                  }
-                />
-              </label>
-              <label className="flex items-center justify-between gap-3">
-                <span>Spawn Y</span>
-                <input
-                  className="w-32"
-                  type="range"
-                  min="-0.2"
-                  max="1.2"
-                  step="0.01"
-                  value={shaderDebug.particleEmitterY}
-                  onChange={(event) =>
-                    setShaderDebug((prev) => ({
-                      ...prev,
-                      particleEmitterY: Number(event.target.value),
-                    }))
-                  }
-                />
-              </label>
-            </div>
-          </details>
-
-          <details className="mb-2 group">
-            <summary className="cursor-pointer text-white font-semibold flex justify-between select-none">
-              Particle Lighting
-              <span className="group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <div className="mt-2 space-y-3 pl-2">
-              <label className="flex items-center justify-between gap-3">
                 <span>Opacity</span>
                 <input
                   className="w-32"
                   type="range"
-                  min="0.05"
+                  min="0"
                   max="1"
                   step="0.01"
                   value={shaderDebug.particleOpacity}
@@ -615,13 +540,47 @@ function App() {
                 />
               </label>
               <label className="flex items-center justify-between gap-3">
-                <span>Emit Z / Radius Scale</span>
+                <span>Emitter X</span>
                 <input
                   className="w-32"
                   type="range"
-                  min="-1"
-                  max="1"
-                  step="0.01"
+                  min="0"
+                  max="200"
+                  step="1"
+                  value={shaderDebug.particleEmitterX}
+                  onChange={(event) =>
+                    setShaderDebug((prev) => ({
+                      ...prev,
+                      particleEmitterX: Number(event.target.value),
+                    }))
+                  }
+                />
+              </label>
+              <label className="flex items-center justify-between gap-3">
+                <span>Emitter Y</span>
+                <input
+                  className="w-32"
+                  type="range"
+                  min="0"
+                  max="300"
+                  step="1"
+                  value={shaderDebug.particleEmitterY}
+                  onChange={(event) =>
+                    setShaderDebug((prev) => ({
+                      ...prev,
+                      particleEmitterY: Number(event.target.value),
+                    }))
+                  }
+                />
+              </label>
+              <label className="flex items-center justify-between gap-3">
+                <span>Emitter Z</span>
+                <input
+                  className="w-32"
+                  type="range"
+                  min="-50"
+                  max="50"
+                  step="1"
                   value={shaderDebug.particleEmitterZ}
                   onChange={(event) =>
                     setShaderDebug((prev) => ({
@@ -632,12 +591,29 @@ function App() {
                 />
               </label>
               <label className="flex items-center justify-between gap-3">
+                <span>Rotation</span>
+                <input
+                  className="w-32"
+                  type="range"
+                  min="0"
+                  max="6.28"
+                  step="0.01"
+                  value={shaderDebug.particleRotation}
+                  onChange={(event) =>
+                    setShaderDebug((prev) => ({
+                      ...prev,
+                      particleRotation: Number(event.target.value),
+                    }))
+                  }
+                />
+              </label>
+              <label className="flex items-center justify-between gap-3">
                 <span>Light X</span>
                 <input
                   className="w-32"
                   type="range"
-                  min="-3"
-                  max="3"
+                  min="-2"
+                  max="2"
                   step="0.05"
                   value={shaderDebug.particleLightX}
                   onChange={(event) =>
@@ -653,8 +629,8 @@ function App() {
                 <input
                   className="w-32"
                   type="range"
-                  min="-3"
-                  max="3"
+                  min="-2"
+                  max="2"
                   step="0.05"
                   value={shaderDebug.particleLightY}
                   onChange={(event) =>
@@ -670,8 +646,8 @@ function App() {
                 <input
                   className="w-32"
                   type="range"
-                  min="0.1"
-                  max="6"
+                  min="0"
+                  max="4"
                   step="0.05"
                   value={shaderDebug.particleLightZ}
                   onChange={(event) =>
@@ -687,8 +663,8 @@ function App() {
                 <input
                   className="w-32"
                   type="range"
-                  min="0.02"
-                  max="0.4"
+                  min="0"
+                  max="1"
                   step="0.01"
                   value={shaderDebug.particleOutline}
                   onChange={(event) =>
@@ -700,11 +676,11 @@ function App() {
                 />
               </label>
               <label className="flex items-center justify-between gap-3">
-                <span>Outline soft</span>
+                <span>Outline Soft</span>
                 <input
                   className="w-32"
                   type="range"
-                  min="0.005"
+                  min="0"
                   max="0.2"
                   step="0.005"
                   value={shaderDebug.particleOutlineSoft}
@@ -717,11 +693,11 @@ function App() {
                 />
               </label>
               <label className="flex items-center justify-between gap-3">
-                <span>Outline alpha</span>
+                <span>Outline Alpha</span>
                 <input
                   className="w-32"
                   type="range"
-                  min="0.05"
+                  min="0"
                   max="1"
                   step="0.01"
                   value={shaderDebug.particleOutlineAlpha}
@@ -751,12 +727,12 @@ function App() {
                 />
               </label>
               <label className="flex items-center justify-between gap-3">
-                <span>Specular</span>
+                <span>Spec</span>
                 <input
                   className="w-32"
                   type="range"
                   min="0"
-                  max="2"
+                  max="1"
                   step="0.01"
                   value={shaderDebug.particleSpecular}
                   onChange={(event) =>
@@ -811,342 +787,58 @@ function App() {
             className="h-full w-full"
           />
         </div>
-        <div className="mx-auto max-w-6xl px-6 pt-4 text-[11px] italic text-black/70">
+        <div className="mx-auto max-w-6xl px-6 pt-4 text-[11px] italic text-black/70 sm:pl-28">
           “A distant lighthouse guides ships safely through unfamiliar waters.”
         </div>
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 pb-6 pt-4">
-          <div className="flex items-center gap-4">
-            <motion.img
-              src={logoMark}
-              alt="Distant Lighthouse logo"
-              className="h-16 w-16 rounded-full border border-black/15 bg-white object-contain"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            />
-            <div className="text-xs font-semibold uppercase tracking-[0.35em] text-black">
-              Distant Lighthouse
-            </div>
-          </div>
-          <div className="hidden items-center gap-6 text-xs uppercase tracking-[0.2em] text-black/70 sm:flex">
-            <a href="#hero" className="hover:text-black">
-              Home
-            </a>
-            <a href="#projects" className="hover:text-black">
-              Projects
-            </a>
-            <a href="#services" className="hover:text-black">
-              Services
-            </a>
-            <a href="#workflow" className="hover:text-black">
-              Workflow
-            </a>
-            <a href="#contact" className="hover:text-black">
-              Contact
-            </a>
-          </div>
-        </nav>
       </header>
 
-      <main className="pt-24">
-        <section
-          id="hero"
-          className="relative mx-auto flex min-h-[70vh] max-w-6xl flex-col justify-center px-6 py-20"
-        >
-          <motion.div
-            className="max-w-2xl space-y-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          >
-            <p className="text-xs uppercase tracking-[0.4em] text-white/60">
-              Mercer, Maine • Software Contracting
-            </p>
-            <h1 className="text-3xl font-semibold leading-tight sm:text-4xl">
-              Clear, Durable Custom Software.
-            </h1>
-            <div className="space-y-4 text-base text-white/70 sm:text-lg">
-              <p>
-                Based in Mercer, Maine, Distant Lighthouse is an independent
-                software development firm with 10 years of computer science and
-                software engineering experience. We offer faster solutions with
-                cutting edge AI development practices.
-              </p>
-              <p>
-                We specialize in solving problems that off-the-shelf software
-                cannot.
-              </p>
-              <p>We hire top talent from:</p>
-              <div className="flex flex-wrap items-center gap-6">
-                <span className="inline-flex items-center rounded bg-white px-2 py-1.5">
-                  <img
-                    src="/Badges/AMD_Logo.svg.png"
-                    alt="AMD"
-                    className="h-8 w-auto"
-                  />
-                </span>
-                <img
-                  src="/Badges/ANSYS Logo.png"
-                  alt="ANSYS"
-                  className="h-10 w-auto"
-                />
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#contact"
-                className="rounded-full border border-white/20 px-6 py-3 text-xs uppercase tracking-[0.3em] text-white transition hover:border-white/60"
-              >
-                Start a project
-              </a>
-              <a
-                href="#services"
-                className="rounded-full border border-white/10 px-6 py-3 text-xs uppercase tracking-[0.3em] text-white/70 transition hover:border-white/40 hover:text-white"
-              >
-                View services
-              </a>
-            </div>
-          </motion.div>
-          <div className="pointer-events-none absolute inset-0 -z-10 rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-black to-black" />
-        </section>
+      <aside className="fixed left-0 top-0 z-50 flex h-screen w-20 flex-col items-center justify-between border-r border-white/10 bg-black/60 py-6 backdrop-blur sm:w-28">
+        <NavLink to="/" className="group flex flex-col items-center gap-3">
+          <motion.img
+            src={logoMark}
+            alt="Distant Lighthouse logo"
+            className="h-12 w-12 rounded-full border border-white/20 bg-white object-contain"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          />
+          <span className="text-[9px] uppercase tracking-[0.35em] text-white/70">
+            Distant
+          </span>
+        </NavLink>
+        <nav className="flex flex-col items-center gap-5 text-[10px] uppercase tracking-[0.35em]">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              className={({ isActive }) =>
+                `text-center transition ${isActive ? 'text-white' : 'text-white/60 hover:text-white'}`
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+        <div className="text-[9px] uppercase tracking-[0.4em] text-white/30">
+          © 2026
+        </div>
+      </aside>
 
-        <motion.section
-          id="projects"
-          className="mx-auto max-w-6xl px-6 py-20"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          <div className="mb-12 space-y-4">
-            <p className="text-xs uppercase tracking-[0.4em] text-white/50">
-              Customer Projects
-            </p>
-            <h2 className="text-3xl font-semibold sm:text-4xl">
-              
-            </h2>
-          </div>
-          <div className="space-y-10">
-            {projects.map((project) => ( 
-              <ProjectCard
-                key={project.name}
-                name={project.name}
-                description={project.description}
-                details={project.details}
-                theme={project.theme}
-                media={project.media}
-                links={project.links}
-              />
-            ))}
-          </div>
-        </motion.section>
-
-
-
-        <motion.section
-          id="services"
-          className="mx-auto max-w-6xl px-6 py-20"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          <div className="mb-12 space-y-4">
-            <p className="text-xs uppercase tracking-[0.4em] text-white/50">
-              Services
-            </p>
-            <h2 className="text-3xl font-semibold sm:text-4xl">
-              What we build.
-            </h2>
-          </div>
-          <div className="grid gap-8 md:grid-cols-3">
-            {serviceColumns.map((column, index) => (
-              <motion.div
-                key={`service-column-${index}`}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6"
-                whileHover={{ y: -4, boxShadow: '0 0 20px rgba(255,255,255,0.08)' }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <motion.ul
-                  className="space-y-3 text-sm text-white/70"
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ staggerChildren: 0.08 }}
-                >
-                  {column.map((item) => (
-                    <motion.li
-                      key={item}
-                      variants={{
-                        hidden: { opacity: 0, x: -15 },
-                        visible: { opacity: 1, x: 0 },
-                      }}
-                      transition={{ duration: 0.35, ease: 'easeOut' }}
-                    >
-                      {item}
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        <motion.section
-          id="workflow"
-          className="mx-auto max-w-6xl px-6 py-20"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          <div className="mb-12 space-y-4">
-            <p className="text-xs uppercase tracking-[0.4em] text-white/50">
-              Workflow
-            </p>
-            <h2 className="text-3xl font-semibold sm:text-4xl">
-              How engagements work.
-            </h2>
-          </div>
-          <motion.ol
-            className="flex flex-col gap-4"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ staggerChildren: 0.1 }}
-          >
-            {[
-              'Initial consultation (no obligation)',
-              'Problem definition and feature assessment',
-              'Feature/progress definition in work tracking software',
-              'Development with feedback',
-              'Deployment and support',
-            ].map((step, i) => (
-              <motion.li
-                key={step}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6 text-lg text-white/70"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                whileHover={{ y: -4, boxShadow: '0 0 20px rgba(255,255,255,0.08)' }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <span className="font-semibold text-white">{i + 1}.</span> {step}
-              </motion.li>
-            ))}
-          </motion.ol>
-        </motion.section>
-
-        <motion.section
-          id="contact"
-          className="mx-auto max-w-6xl px-6 py-20"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-10">
-            <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-              <div className="max-w-xl space-y-4">
-                <p className="text-xs uppercase tracking-[0.4em] text-white/50">
-                  Contact
-                </p>
-                <h2 className="text-3xl font-semibold sm:text-4xl">
-                  Ready to map the next build?
-                </h2>
-                <p className="text-base text-white/70">
-                  Contact us for timelines, scoping, and the right technical
-                  approach.
-                </p>
-                <div className="space-y-2 text-sm text-white/70">
-                  <p>toryjleo@distantlighthouse.com</p>
-                  <p>(207) 509-8613</p>
-                  <a
-                    href="mailto:toryjleo@distantlighthouse.com"
-                    className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-xs uppercase tracking-[0.3em] text-white transition hover:border-white/60"
-                  >
-                    Start the conversation
-                  </a>
-                </div>
-                <div className="hidden pt-4 text-sm text-white/60 lg:block">
-                  <a
-                    href="https://linkedin.com/company/distant-lighthouse-llc/"
-                    className="inline-flex items-center text-white underline decoration-white/30 underline-offset-4 transition hover:text-white"
-                  >
-                    <img
-                      src="/Badges/LI-Logo.png"
-                      alt="LinkedIn"
-                      className="h-4 w-auto"
-                    />
-                  </a>
-                </div>
-              </div>
-              <form className="w-full max-w-md space-y-4" onSubmit={handleConsultSubmit}>
-                <input
-                  type="text"
-                  placeholder="Name"
-                  name="name"
-                  className="w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-white/40"
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  name="email"
-                  className="w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-white/40"
-                />
-                <textarea
-                  rows="4"
-                  placeholder="Tell us about your project"
-                  name="message"
-                  className="w-full rounded-2xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-white/40"
-                />
-                <button
-                  type="submit"
-                  className="w-full rounded-full border border-white/20 px-6 py-3 text-xs uppercase tracking-[0.3em] text-white transition hover:border-white/60"
-                >
-                  Request a consult
-                </button>
-                <div className="pt-2 text-center text-sm text-white/60 lg:hidden">
-                  <a
-                    href="https://linkedin.com/company/distant-lighthouse-llc/"
-                    className="inline-flex items-center justify-center text-white underline decoration-white/30 underline-offset-4 transition hover:text-white"
-                  >
-                    <img
-                      src="/Badges/LI-Logo.png"
-                      alt="LinkedIn"
-                      className="h-4 w-auto"
-                    />
-                  </a>
-                </div>
-              </form>
-            </div>
-            <div className="mt-12 border-t border-white/10 pt-8">
-              <blockquote className="quote-block text-sm text-white/70">
-                "A stormy wind may drive sleet against inland meadows sufficiently
-                to arouse sympathy for the men who patrol the streets; but seldom
-                on such nights do thoughts of people nowadays drift to the men
-                in solitary outposts of the seaboard who are confined to the
-                narrow cabin of a lightship, or to those who watch in the towers
-                of lighthouses perched on the bleak headlands of the coast or on
-                sunken ledges. These men keep a quiet but effective watch which
-                makes a naturally inhospitable coast at least a navigable one.
-                Remote and unknown, they are the guardians of the coast; and man
-                must still keep constant vigil against the treachery of wind and
-                water.""
-              </blockquote>
-              <p className="mt-4 text-xs text-white/50">
-                LIGHTHOUSES OF THE MAINE COAST — Robert T. Sterling.
-              </p>
-            </div>
-          </div>
-        </motion.section>
+      <main className="pt-28 pl-20 sm:pl-28">
+        <Routes>
+          <Route path="/" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<About />} />
+        </Routes>
       </main>
 
-      <footer className="border-t border-white/10 py-8 text-center text-xs text-white/40">
+      <footer className="border-t border-white/10 py-8 pl-20 text-center text-xs text-white/40 sm:pl-28">
         © 2026 Distant Lighthouse. All rights reserved.
       </footer>
-    </div >
+    </div>
   )
 }
 
