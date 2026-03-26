@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { getNewsletterPosts } from '../data/newsletter'
 
 export default function About() {
+  const latestPost = getNewsletterPosts()[0]
+
   return (
     <section
       className="relative mx-auto flex min-h-[70vh] max-w-6xl flex-col justify-center px-6 py-20"
@@ -59,6 +62,32 @@ export default function About() {
             View services
           </Link>
         </div>
+
+        {latestPost && (
+          <div className="mt-10 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-6">
+            <p className="text-[11px] uppercase tracking-[0.35em] text-white/50">
+              Latest newsletter
+            </p>
+            <h2 className="mt-3 text-xl font-semibold text-white">
+              {latestPost.title}
+            </h2>
+            <p className="mt-2 text-xs uppercase tracking-[0.3em] text-white/40">
+              {latestPost.dateLabel || 'Undated'}
+            </p>
+            {latestPost.summary && (
+              <p className="mt-3 text-sm text-white/70">
+                {latestPost.summary}
+              </p>
+            )}
+            <Link
+              to={`/newsletter/${latestPost.slug}`}
+              className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-white/70 transition hover:text-white"
+            >
+              Read the latest
+              <span aria-hidden>→</span>
+            </Link>
+          </div>
+        )}
       </motion.div>
       <div className="pointer-events-none absolute inset-0 -z-10 rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-black to-black" />
     </section>
