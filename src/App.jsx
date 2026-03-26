@@ -8,6 +8,7 @@ import About from './pages/About'
 import Projects from './pages/Projects'
 import Services from './pages/Services'
 import Contact from './pages/Contact'
+import Quote from './pages/Quote'
 
 const navItems = [
   { to: '/', label: 'About', end: true },
@@ -112,12 +113,7 @@ function App() {
   return (
     <div className="min-h-screen bg-black text-white">
       <ScrollToTop />
-      <div
-        className="pointer-events-none fixed inset-x-0 top-0 z-[31] h-[30vh]"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0) 100%)',
-        }}
-      />
+      <div className="bubble-fade pointer-events-none fixed inset-x-0 top-0 z-[31] h-[30vh]" />
       <ParticleEdges
         className="particle-edges pointer-events-none fixed left-0 top-0 z-30 block h-screen w-screen"
         paused={shaderDebug.paused}
@@ -772,7 +768,7 @@ function App() {
           </button>
         </div>
       )}
-      <header className="navbar-scene fixed left-0 right-0 top-0 z-40 overflow-hidden">
+      <header className="navbar-scene fixed left-0 right-0 top-0 z-40 h-28 overflow-hidden sm:h-32">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24">
           <WaterShader
             paused={shaderDebug.paused}
@@ -787,25 +783,31 @@ function App() {
             className="h-full w-full"
           />
         </div>
-        <div className="mx-auto max-w-6xl px-6 pt-4 text-[11px] italic text-black/70 sm:pl-28">
-          “A distant lighthouse guides ships safely through unfamiliar waters.”
+        <div className="mx-auto flex max-w-6xl items-start justify-between px-6 pt-4 sm:pl-28">
+          <NavLink to="/" className="flex items-center gap-4">
+            <motion.img
+              src={logoMark}
+              alt="Distant Lighthouse logo"
+              className="h-14 w-14 rounded-full border border-black/15 bg-white object-contain"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            />
+            <div className="text-xs font-semibold uppercase tracking-[0.35em] text-black">
+              Distant Lighthouse
+            </div>
+          </NavLink>
+          <NavLink
+            to="/quote"
+            className="hidden text-[11px] italic text-black/70 transition hover:text-black sm:block"
+          >
+            “A distant lighthouse guides ships safely through unfamiliar waters.”
+          </NavLink>
         </div>
       </header>
 
       <aside className="fixed left-0 top-0 z-50 flex h-screen w-20 flex-col items-center justify-between border-r border-white/10 bg-black/60 py-6 backdrop-blur sm:w-28">
-        <NavLink to="/" className="group flex flex-col items-center gap-3">
-          <motion.img
-            src={logoMark}
-            alt="Distant Lighthouse logo"
-            className="h-12 w-12 rounded-full border border-white/20 bg-white object-contain"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          />
-          <span className="text-[9px] uppercase tracking-[0.35em] text-white/70">
-            Distant
-          </span>
-        </NavLink>
+        <div />
         <nav className="flex flex-col items-center gap-5 text-[10px] uppercase tracking-[0.35em]">
           {navItems.map((item) => (
             <NavLink
@@ -831,6 +833,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/quote" element={<Quote />} />
           <Route path="*" element={<About />} />
         </Routes>
       </main>

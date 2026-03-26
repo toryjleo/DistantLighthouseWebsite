@@ -104,22 +104,9 @@ export default function Contact() {
           </form>
         </div>
         <div className="mt-12 border-t border-white/10 pt-8">
-          <blockquote className="quote-block text-sm text-white/70">
-            "A stormy wind may drive sleet against inland meadows sufficiently
-            to arouse sympathy for the men who patrol the streets; but seldom
-            on such nights do thoughts of people nowadays drift to the men
-            in solitary outposts of the seaboard who are confined to the
-            narrow cabin of a lightship, or to those who watch in the towers
-            of lighthouses perched on the bleak headlands of the coast or on
-            sunken ledges. These men keep a quiet but effective watch which
-            makes a naturally inhospitable coast at least a navigable one.
-            Remote and unknown, they are the guardians of the coast; and man
-            must still keep constant vigil against the treachery of wind and
-            water."
-          </blockquote>
-          <p className="mt-4 text-xs text-white/50">
-            LIGHTHOUSES OF THE MAINE COAST — Robert T. Sterling.
-          </p>
+          <div className="text-xs uppercase tracking-[0.3em] text-white/40">
+            Keep watch.
+          </div>
         </div>
       </div>
     </motion.section>
