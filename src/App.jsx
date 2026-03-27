@@ -826,7 +826,7 @@ function App() {
         </div>
       </header>
 
-      <main className="pt-36 sm:pt-40">
+      <main className="pt-36 px-5 sm:px-8 lg:px-12 sm:pt-40">
         <Routes>
           <Route path="/" element={<About />} />
           <Route path="/services" element={<Services />} />
