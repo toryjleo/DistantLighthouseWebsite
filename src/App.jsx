@@ -772,8 +772,8 @@ function App() {
           </button>
         </div>
       )}
-      <header className="navbar-scene fixed left-0 right-0 top-0 z-40 h-28 overflow-hidden sm:h-32">
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24">
+      <header className="navbar-scene fixed left-0 right-0 top-0 z-40 h-36 overflow-hidden sm:h-40">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-24">
           <WaterShader
             paused={shaderDebug.paused}
             timeScale={shaderDebug.timeScale}
@@ -787,51 +787,46 @@ function App() {
             className="h-full w-full"
           />
         </div>
-        <div className="mx-auto flex max-w-6xl items-start justify-between px-6 pt-4 sm:pl-28">
-          <NavLink to="/" className="flex items-center gap-4">
-            <motion.img
-              src={logoMark}
-              alt="Distant Lighthouse logo"
-              className="h-14 w-14 rounded-full border border-black/15 bg-white object-contain"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            />
-            <div className="text-xs font-semibold uppercase tracking-[0.35em] text-black">
-              Distant Lighthouse
-            </div>
-          </NavLink>
-          <NavLink
-            to="/quote"
-            className="hidden text-[11px] italic text-black/70 transition hover:text-black sm:block"
-          >
-            “A distant lighthouse guides ships safely through unfamiliar waters.”
-          </NavLink>
+        <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-between px-6 pt-4 pb-3">
+          <div className="flex items-start justify-between">
+            <NavLink to="/" className="flex items-center gap-4">
+              <motion.img
+                src={logoMark}
+                alt="Distant Lighthouse logo"
+                className="h-14 w-14 rounded-full border border-black/15 bg-white object-contain"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              />
+              <div className="text-xs font-semibold uppercase tracking-[0.35em] text-black">
+                Distant Lighthouse
+              </div>
+            </NavLink>
+            <NavLink
+              to="/quote"
+              className="hidden text-[11px] italic text-black/70 transition hover:text-black sm:block"
+            >
+              “A distant lighthouse guides ships safely through unfamiliar waters.”
+            </NavLink>
+          </div>
+          <nav className="flex flex-wrap items-center justify-center gap-4 px-2 text-[11px] uppercase tracking-[0.22em] text-white/80 sm:text-[12px]">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.end}
+                className={({ isActive }) =>
+                  `text-center leading-tight transition ${isActive ? 'text-white' : 'text-white/60 hover:text-white'}`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
         </div>
       </header>
 
-      <aside className="fixed left-0 top-0 z-50 flex h-screen w-20 flex-col items-center justify-between border-r border-white/10 py-6 sm:w-24">
-        <div />
-        <nav className="flex w-full flex-col items-center gap-4 px-2 text-[10px] uppercase tracking-[0.12em] text-white/80 sm:px-2 sm:text-[11px] sm:tracking-[0.22em]">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.end}
-              className={({ isActive }) =>
-                `text-center leading-tight transition ${isActive ? 'text-white' : 'text-white/60 hover:text-white'}`
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-        <div className="text-[9px] uppercase tracking-[0.4em] text-white/30">
-          © 2026
-        </div>
-      </aside>
-
-      <main className="pt-28 pl-20 sm:pl-28">
+      <main className="pt-36 sm:pt-40">
         <Routes>
           <Route path="/" element={<About />} />
           <Route path="/services" element={<Services />} />
@@ -844,7 +839,7 @@ function App() {
         </Routes>
       </main>
 
-      <footer className="border-t border-white/10 py-8 pl-20 text-center text-xs text-white/40 sm:pl-28">
+      <footer className="border-t border-white/10 py-8 text-center text-xs text-white/40">
         © 2026 Distant Lighthouse. All rights reserved.
       </footer>
     </div>
