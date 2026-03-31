@@ -809,7 +809,7 @@ function App() {
               “A distant lighthouse guides ships safely through unfamiliar waters.”
             </NavLink>
           </div>
-          <nav className="flex flex-wrap items-center justify-center gap-4 px-2 text-[11px] uppercase tracking-[0.22em] text-white/80 sm:text-[12px]">
+          <nav className="mt-[32px] grid grid-cols-3 items-center justify-center gap-x-3 gap-y-2 px-2 text-[10px] uppercase tracking-[0.18em] text-white/80 sm:mt-0 sm:flex sm:flex-wrap sm:gap-4 sm:text-[12px] sm:tracking-[0.22em]">
             {navItems.map((item) => (
               <NavLink
                 key={item.to}

@@ -4,12 +4,12 @@
   "lowQuality": false,
   "timeScale": 0.65,
   "alpha": 0.95,
-  "depth": 0.43,
+  "depth": 0.59,
   "edge": 0.025,
   "height": 0,
-  "w1Scale": 2,
-  "w2Scale": 5.1,
-  "w3Scale": 13.6,
+  "w1Scale": 3.6,
+  "w2Scale": 11,
+  "w3Scale": 21.3,
   "particleCount": 264,
   "particleSpawnRate": 0.4,
   "particleScrollBurst": 0.046,
@@ -35,5 +35,5 @@
   "particleDiffuse": 0.3,
   "particleSpecular": 0.55,
   "particleSpecularPower": 32,
-  "savedAt": "2026-03-10T18:06:14.281Z"
+  "savedAt": "2026-03-31T16:40:16.643Z"
 }
