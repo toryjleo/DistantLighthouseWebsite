@@ -98,6 +98,31 @@ const projects = [
         src: 'Cyberpunk/nightcityhuge-900x533.jpg',
         label: 'Cyberpunk 2020 ledger download card',
       },
+      {
+        type: 'image',
+        src: 'Cyberpunk/cybered_up.PNG',
+        label: 'Cyberpunk 2020 ledger download card',
+      },
+      {
+        type: 'image',
+        src: 'Cyberpunk/glass_eyes.PNG',
+        label: 'Cyberpunk 2020 ledger download card',
+      },
+      {
+        type: 'image',
+        src: 'Cyberpunk/high_society.PNG',
+        label: 'Cyberpunk 2020 ledger download card',
+      },
+      {
+        type: 'image',
+        src: 'Cyberpunk/johnny_silverhand.PNG',
+        label: 'Cyberpunk 2020 ledger download card',
+      },
+      {
+        type: 'image',
+        src: 'Cyberpunk/new_arm.PNG',
+        label: 'Cyberpunk 2020 ledger download card',
+      },
     ],
   },
 ]
