@@ -52,13 +52,13 @@ const projects = [
     ],
   },
   {
-    name: 'Contractor Job Estimator',
+    name: 'Contractor Job Estimator Sketchup',
     featured: false,
     description: [
-      'A practical estimating tool for service contractors, factory techs, and property crews who need a quote fast.',
+      'Sketchup of a template contractor job estimator.',
       'Runs in the browser, saves locally, and exports a spreadsheet-friendly CSV for Excel, Numbers, or Google Sheets.',
     ],
-    details: 'This sample is aimed at small field teams that still live in spreadsheets. It gives them a cleaner front end without taking away the CSV workflow they already trust.',
+    details: 'Not a full product but this serves as a 1 hour mochup.',
     theme: {
       primary: '#ECFDF5',
       secondary: '#047857',

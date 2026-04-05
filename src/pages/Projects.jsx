@@ -12,7 +12,7 @@ export default function Projects() {
     >
       <div className="mb-12 space-y-4">
         <p className="text-xs uppercase tracking-[0.4em] text-white/50">
-          Customer Projects
+          Projects
         </p>
         <h2 className="text-3xl font-semibold sm:text-4xl"></h2>
       </div>
