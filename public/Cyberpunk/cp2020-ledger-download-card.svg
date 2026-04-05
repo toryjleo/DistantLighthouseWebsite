@@ -1,0 +1,62 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#050816"/>
+  <rect width="1600" height="900" fill="url(#bgGlow)"/>
+  <g opacity="0.5">
+    <path d="M0 171H1600" stroke="#13304A" stroke-width="2"/>
+    <path d="M0 316H1600" stroke="#13304A" stroke-width="2"/>
+    <path d="M0 461H1600" stroke="#13304A" stroke-width="2"/>
+    <path d="M0 606H1600" stroke="#13304A" stroke-width="2"/>
+    <path d="M0 751H1600" stroke="#13304A" stroke-width="2"/>
+    <path d="M177 0V900" stroke="#13304A" stroke-width="2"/>
+    <path d="M457 0V900" stroke="#13304A" stroke-width="2"/>
+    <path d="M737 0V900" stroke="#13304A" stroke-width="2"/>
+    <path d="M1017 0V900" stroke="#13304A" stroke-width="2"/>
+    <path d="M1297 0V900" stroke="#13304A" stroke-width="2"/>
+  </g>
+  <rect x="88" y="84" width="1424" height="732" rx="36" fill="#091226" stroke="#50E6FF" stroke-opacity="0.25" stroke-width="4"/>
+  <rect x="124" y="120" width="1352" height="660" rx="28" fill="url(#panelGlow)" stroke="#E879F9" stroke-opacity="0.18" stroke-width="2"/>
+  <circle cx="1290" cy="222" r="182" fill="#21D4FD" fill-opacity="0.13"/>
+  <circle cx="1275" cy="235" r="108" fill="#F97316" fill-opacity="0.16"/>
+  <circle cx="310" cy="676" r="216" fill="#22C55E" fill-opacity="0.1"/>
+  <path d="M192 708L388 512" stroke="#21D4FD" stroke-opacity="0.42" stroke-width="8"/>
+  <path d="M1198 640L1430 408" stroke="#F97316" stroke-opacity="0.42" stroke-width="8"/>
+  <rect x="180" y="180" width="614" height="470" rx="30" fill="#050A17" stroke="#50E6FF" stroke-opacity="0.28" stroke-width="3"/>
+  <rect x="228" y="242" width="518" height="28" rx="14" fill="#0E1B31"/>
+  <rect x="228" y="300" width="338" height="22" rx="11" fill="#0E1B31"/>
+  <rect x="228" y="372" width="470" height="18" rx="9" fill="#12243D"/>
+  <rect x="228" y="412" width="430" height="18" rx="9" fill="#12243D"/>
+  <rect x="228" y="452" width="456" height="18" rx="9" fill="#12243D"/>
+  <rect x="228" y="516" width="142" height="86" rx="18" fill="#0B162B" stroke="#22C55E" stroke-opacity="0.35" stroke-width="2"/>
+  <rect x="388" y="516" width="142" height="86" rx="18" fill="#0B162B" stroke="#F97316" stroke-opacity="0.35" stroke-width="2"/>
+  <rect x="548" y="516" width="162" height="86" rx="18" fill="#0B162B" stroke="#E879F9" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="228" y="235" fill="#8DEBFF" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="6">MONTHLY LEDGER</text>
+  <text x="228" y="298" fill="#F8FAFC" font-family="'Segoe UI', Arial, sans-serif" font-size="74" font-weight="700">Cyberpunk 2020</text>
+  <text x="228" y="346" fill="#94A3B8" font-family="'Segoe UI', Arial, sans-serif" font-size="24" letter-spacing="2">Crew income, monthly expenses, and stash tracking</text>
+  <text x="252" y="552" fill="#86EFAC" font-family="'Segoe UI', Arial, sans-serif" font-size="18" letter-spacing="2">INCOME</text>
+  <text x="252" y="586" fill="#F8FAFC" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="700">+ Eddies</text>
+  <text x="412" y="552" fill="#FDBA74" font-family="'Segoe UI', Arial, sans-serif" font-size="18" letter-spacing="2">EXPENSES</text>
+  <text x="412" y="586" fill="#F8FAFC" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="700">- Burn Rate</text>
+  <text x="572" y="552" fill="#F0ABFC" font-family="'Segoe UI', Arial, sans-serif" font-size="18" letter-spacing="2">STASH</text>
+  <text x="572" y="586" fill="#F8FAFC" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="700">Projected</text>
+  <rect x="882" y="180" width="530" height="470" rx="36" fill="#060B16" stroke="#F97316" stroke-opacity="0.34" stroke-width="3"/>
+  <path d="M1036 258H1260C1277.67 258 1292 272.327 1292 290V514" stroke="#50E6FF" stroke-width="12" stroke-linecap="round"/>
+  <path d="M1248 474L1292 518L1338 472" stroke="#50E6FF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="1147" cy="379" r="108" fill="#071224" stroke="#50E6FF" stroke-opacity="0.24" stroke-width="4"/>
+  <path d="M1092 379H1204" stroke="#50E6FF" stroke-width="14" stroke-linecap="round"/>
+  <path d="M1148 323V435" stroke="#50E6FF" stroke-width="14" stroke-linecap="round"/>
+  <text x="936" y="594" fill="#F8FAFC" font-family="'Segoe UI', Arial, sans-serif" font-size="62" font-weight="700">Download the PDF</text>
+  <text x="936" y="640" fill="#94A3B8" font-family="'Segoe UI', Arial, sans-serif" font-size="24">Click to grab the hosted Cyberpunk 2020 rulebook file</text>
+  <rect x="938" y="688" width="388" height="62" rx="31" fill="#F97316"/>
+  <text x="1000" y="728" fill="#04101D" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="3">DIRECT DOWNLOAD</text>
+  <defs>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1064 178) rotate(129.698) scale(943.119 1677.55)">
+      <stop stop-color="#0EA5E9" stop-opacity="0.14"/>
+      <stop offset="0.41" stop-color="#0F172A" stop-opacity="0"/>
+      <stop offset="1" stop-color="#050816"/>
+    </radialGradient>
+    <linearGradient id="panelGlow" x1="800" y1="120" x2="800" y2="780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A1326"/>
+      <stop offset="1" stop-color="#08101F"/>
+    </linearGradient>
+  </defs>
+</svg>

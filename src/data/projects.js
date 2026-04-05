@@ -75,6 +75,31 @@ const projects = [
       },
     ],
   },
+  {
+    name: 'Cyberpunk 2020 Monthly Ledger',
+    featured: false,
+    description: [
+      'A browser-based monthly tracker for crew income, recurring bills, one-off expenses, and current stash.',
+      'The current version autosaves locally, exports CSV, prints cleanly, and links back to the hosted Cyberpunk 2020 PDF for quick rules reference.',
+    ],
+    details: '\"Back in the day I’d Stuffit to the ripperdoc for some free hydro. Now you got a keyboard trackin your clams? That chilled.\" - Cybermike',
+    theme: {
+      primary: '#000000',
+      secondary: '#ffffff',
+      text: '#ff0000',
+    },
+    links: {
+      demo: '/projects/cyberpunk-ledger',
+      download: '/pdfs/cyberpunk2020.pdf',
+    },
+    media: [
+      {
+        type: 'image',
+        src: 'Cyberpunk/nightcityhuge-900x533.jpg',
+        label: 'Cyberpunk 2020 ledger download card',
+      },
+    ],
+  },
 ]
 
 export default projects

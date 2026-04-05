@@ -11,6 +11,7 @@ import Quote from './pages/Quote'
 import Newsletter from './pages/Newsletter'
 import NewsletterPost from './pages/NewsletterPost'
 import JobEstimator from './pages/JobEstimator'
+import CyberpunkLedger from './pages/CyberpunkLedger'
 
 const navItems = [
   { to: '/', label: 'About', end: true },
@@ -837,6 +838,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/quote" element={<Quote />} />
           <Route path="/projects/job-estimator" element={<JobEstimator />} />
+          <Route path="/projects/cyberpunk-ledger" element={<CyberpunkLedger />} />
           <Route path="*" element={<About />} />
         </Routes>
       </main>
