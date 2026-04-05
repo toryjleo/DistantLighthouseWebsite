@@ -1,6 +1,9 @@
+import { jobEstimatorPreview } from '../utils/jobEstimatorPreview'
+
 const projects = [
   {
     name: 'Your Best Week Yet',
+    featured: true,
     description: [
       'Built for Mohawk Valley Wellness, "Your Best Week Yet" automates data collection for our customer\'s fitness program.',
     ],
@@ -45,6 +48,30 @@ const projects = [
         type: 'image',
         src: '/YBWY/YBWY-ADMIN-CONSOLE.png',
         label: 'Customer Administrative Console'
+      },
+    ],
+  },
+  {
+    name: 'Contractor Job Estimator',
+    featured: false,
+    description: [
+      'A practical estimating tool for service contractors, factory techs, and property crews who need a quote fast.',
+      'Runs in the browser, saves locally, and exports a spreadsheet-friendly CSV for Excel, Numbers, or Google Sheets.',
+    ],
+    details: 'This sample is aimed at small field teams that still live in spreadsheets. It gives them a cleaner front end without taking away the CSV workflow they already trust.',
+    theme: {
+      primary: '#ECFDF5',
+      secondary: '#047857',
+      text: '#052E16',
+    },
+    links: {
+      demo: '/projects/job-estimator',
+    },
+    media: [
+      {
+        type: 'image',
+        src: jobEstimatorPreview,
+        label: 'Estimator preview',
       },
     ],
   },

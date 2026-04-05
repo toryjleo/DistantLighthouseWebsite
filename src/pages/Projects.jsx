@@ -21,6 +21,7 @@ export default function Projects() {
           <ProjectCard
             key={project.name}
             name={project.name}
+            featured={project.featured}
             description={project.description}
             details={project.details}
             theme={project.theme}

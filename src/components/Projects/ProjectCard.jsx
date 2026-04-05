@@ -24,6 +24,7 @@ function renderDescription(description) {
 function renderLinks(links, accentColor) {
     if (!links) return null;
     const hasBadges = links.googlePlay || links.ios;
+    const hasActionLinks = links.demo || links.download;
 
     return (
         <div className="mt-4 flex flex-col items-start gap-3">
@@ -59,11 +60,42 @@ function renderLinks(links, accentColor) {
                     />
                 </a>
             )}
+
+            {hasActionLinks && (
+                <div className="flex flex-wrap gap-3">
+                    {links.demo && (
+                        <a
+                            href={links.demo}
+                            target={links.demo.startsWith('/') ? undefined : '_blank'}
+                            rel={links.demo.startsWith('/') ? undefined : 'noreferrer'}
+                            className="rounded-full border px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] transition"
+                            style={{
+                                borderColor: `${accentColor}66`,
+                                color: accentColor,
+                            }}
+                        >
+                            Live Demo
+                        </a>
+                    )}
+                    {links.download && (
+                        <a
+                            href={links.download}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="rounded-full border border-black/15 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] opacity-70 transition hover:opacity-100"
+                        >
+                            Download
+                        </a>
+                    )}
+                </div>
+            )}
         </div>
     );
 }
 
-export default function ProjectCard({ name, description, details, theme, media, links }) {
+export default function ProjectCard({ name, description, details, theme, media, links, featured = false }) {
+    const hasMedia = Array.isArray(media) && media.length > 0;
+
     return (
         <article
             className="rounded-xl p-10 overflow-hidden relative shadow-2xl"
@@ -72,20 +104,24 @@ export default function ProjectCard({ name, description, details, theme, media, 
                 color: theme.text,
             }}
         >
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:grid-rows-[auto_1fr] lg:items-stretch relative z-10">
+            <div className={`grid grid-cols-1 gap-8 relative z-10 ${hasMedia ? 'lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:grid-rows-[auto_1fr] lg:items-stretch' : ''}`}>
                 <div className="max-w-xl">
-                    <p className="text-xs uppercase tracking-[0.4em] opacity-60 font-semibold">
-                        Featured Project
-                    </p>
+                    {featured && (
+                        <p className="text-xs uppercase tracking-[0.4em] opacity-60 font-semibold">
+                            Featured Project
+                        </p>
+                    )}
                     <h3 className="mt-4 text-3xl font-bold sm:text-5xl tracking-tight">{name}</h3>
                 </div>
 
                 {/* Carousel Area */}
-                <div className="w-full lg:col-start-2 lg:row-span-2 lg:max-w-2xl">
-                    <ProjectCarousel media={media} />
-                </div>
+                {hasMedia && (
+                    <div className="w-full lg:col-start-2 lg:row-span-2 lg:max-w-2xl">
+                        <ProjectCarousel media={media} />
+                    </div>
+                )}
 
-                <div className="max-w-xl flex h-full flex-col gap-8 lg:row-start-2">
+                <div className={`max-w-xl flex h-full flex-col gap-8 ${hasMedia ? 'lg:row-start-2' : ''}`}>
                     <div className="space-y-4 text-balance">
                         {renderDescription(description)}
                     </div>
