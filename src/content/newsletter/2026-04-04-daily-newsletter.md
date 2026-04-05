@@ -1,16 +1,16 @@
 ---
-title: "Distant Lighthouse - Open for business"
+title: "Distant Lighthouse - What We Do"
 date: 2026-04-04
 author: "Tory"
 summary: "Tory goes into some light depth and examples of what Distant Lighthouse does."
 ---
 
-I am enjoying a cup of wine. Why not? It is the eve before Easter and I have been a busy boy.
+It is the eve before Easter and I have been a busy boy.
 
 ## What is happening
 We are officially open for business and taking new clients. This past week, I was busy drafting documents and sending them off to various 3rd parties. That kind of work will continue however hopefully some of that will be less forthcoming and will resolve itself with time.
 
-If I have not made it clear yet: Distant Lighthouse is my all-inclusive business for software development. Any work I do for a customer or for my own finanicial gain will be through Distant Lighthouse. This leaves a world of opportunties open, as long as I can put bread on the table.
+If I have not made it clear yet: Distant Lighthouse is my all-inclusive business for software development. Any work I do for a customer or for my own finanicial gain will be through Distant Lighthouse. This leaves a world of opportunities open, as long as I can put bread on the table.
 
 So what does this mean?
 
@@ -28,10 +28,8 @@ Basically if you have some sort of **system** that needs to be made, we can make
 At Distant Lighthouse we want technology to **strengthen** connections and build convenience. Not the other way around.
 
 
-
 So in the meantime I am taking to the streets. The printer is off on Good Friday so I won't have the business cards everyone has been asking for for at least a couple more days, contract agreement needs to go back to the lawyer, and I need to submit yearly info for my LLC. My site is up but there is yet more programming that I must do for DL.
 There is other stuff in the pipe but it doesn't pay until the job is done and the job is pretty damn big. 
-
 
 
 Thanks for checking in! 
