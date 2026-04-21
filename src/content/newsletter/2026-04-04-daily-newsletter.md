@@ -5,10 +5,19 @@ author: "Tory"
 summary: "Tory goes into some light depth and examples of what Distant Lighthouse does."
 ---
 
-It is the eve before Easter and I have been a busy boy.
+<center><figure>
+    <img src="/Distant Lighthouse_LOGO B&W (Square).jpg"
+         alt="Distant Lighthouse Logo">
+</figure></center>
 
-## What is happening
-We are officially open for business and taking new clients. This past week, I was busy drafting documents and sending them off to various 3rd parties. That kind of work will continue however hopefully some of that will be less forthcoming and will resolve itself with time.
+<center><h2>We're officially open for business and taking new clients.</h2></center>
+
+
+
+
+<center><font color="red"><p style="font-size: 24px; font-weight: bold; color: #F0F8FF; margin-bottom: 24px">What is happening</p></font></center>
+
+This past week, I was busy drafting documents and sending them off to various 3rd parties. That kind of work will continue however hopefully some of that will be less forthcoming and will resolve itself with time.
 
 If I have not made it clear yet: Distant Lighthouse is my all-inclusive business for software development. Any work I do for a customer or for my own financial gain will be through Distant Lighthouse. This leaves a world of opportunities open, as long as I can put bread on the table.
 
