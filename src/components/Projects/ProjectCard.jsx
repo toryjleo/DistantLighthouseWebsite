@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ProjectCarousel from './ProjectCarousel';
 
 function renderDescription(description) {
@@ -64,18 +65,31 @@ function renderLinks(links, accentColor) {
             {hasActionLinks && (
                 <div className="flex flex-wrap gap-3">
                     {links.demo && (
-                        <a
-                            href={links.demo}
-                            target={links.demo.startsWith('/') ? undefined : '_blank'}
-                            rel={links.demo.startsWith('/') ? undefined : 'noreferrer'}
-                            className="rounded-full border px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] transition"
-                            style={{
-                                borderColor: `${accentColor}66`,
-                                color: accentColor,
-                            }}
-                        >
-                            Live Demo
-                        </a>
+                        links.demo.startsWith('/') ? (
+                            <Link
+                                to={links.demo}
+                                className="rounded-full border px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] transition"
+                                style={{
+                                    borderColor: `${accentColor}66`,
+                                    color: accentColor,
+                                }}
+                            >
+                                Live Demo
+                            </Link>
+                        ) : (
+                            <a
+                                href={links.demo}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="rounded-full border px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] transition"
+                                style={{
+                                    borderColor: `${accentColor}66`,
+                                    color: accentColor,
+                                }}
+                            >
+                                Live Demo
+                            </a>
+                        )
                     )}
                     {links.download && (
                         <a
