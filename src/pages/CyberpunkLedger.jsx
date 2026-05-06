@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 
 const STORAGE_KEY = 'distant-lighthouse-cyberpunk-ledger'
 const PDF_PATH = '/pdfs/cyberpunk2020.pdf'
+const NIGHT_CITY_PATH = '/pdfs/nightcity.pdf'
 const PDF_REFERENCE_PATH = '/pdfs/cyberpunk2020.pdf#page=61'
 const DOWNLOAD_ART_PATH = '/Cyberpunk/cyberpunk-2020-review-header-990x557.webp'
 
@@ -739,21 +740,30 @@ export default function CyberpunkLedger() {
                     marked applied.
                   </p>
                 </div>
-                <div className="mt-5 flex flex-wrap gap-3">
+                <div className="mt-5 space-y-3">
+                  <div className="flex flex-wrap gap-3">
+                    <a
+                      href={PDF_REFERENCE_PATH}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-full border border-cyan-200/30 px-4 py-2 text-xs uppercase tracking-[0.24em] text-cyan-50 transition hover:border-cyan-100/60"
+                    >
+                      Open PDF reference
+                    </a>
+                    <a
+                      href={PDF_PATH}
+                      download
+                      className="rounded-full border border-white/15 px-4 py-2 text-xs uppercase tracking-[0.24em] text-white/80 transition hover:border-white/35 hover:text-white"
+                    >
+                      Download Cyberpunk 2020 PDF
+                    </a>
+                  </div>
                   <a
-                    href={PDF_REFERENCE_PATH}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full border border-cyan-200/30 px-4 py-2 text-xs uppercase tracking-[0.24em] text-cyan-50 transition hover:border-cyan-100/60"
-                  >
-                    Open PDF reference
-                  </a>
-                  <a
-                    href={PDF_PATH}
+                    href={NIGHT_CITY_PATH}
                     download
-                    className="rounded-full border border-white/15 px-4 py-2 text-xs uppercase tracking-[0.24em] text-white/80 transition hover:border-white/35 hover:text-white"
+                    className="inline-flex rounded-full border border-white/15 px-4 py-2 text-xs uppercase tracking-[0.24em] text-white/80 transition hover:border-white/35 hover:text-white"
                   >
-                    Download full PDF
+                    Download Night City PDF
                   </a>
                 </div>
               </section>
@@ -869,17 +879,44 @@ export default function CyberpunkLedger() {
                 <p className="text-xs uppercase tracking-[0.35em] text-white/45">
                   PDF download image
                 </p>
-                <a
-                  href={PDF_PATH}
-                  download
-                  className="group mt-5 block overflow-hidden rounded-[1.75rem] border border-cyan-300/20 bg-black/40 transition hover:border-cyan-100/50"
-                >
-                  <img
-                    src={DOWNLOAD_ART_PATH}
-                    alt="Cyberpunk 2020 download card"
-                    className="w-full transition duration-300 group-hover:scale-[1.015]"
-                  />
-                </a>
+                <div className="mt-5 space-y-4">
+                  <a
+                    href={PDF_PATH}
+                    download
+                    className="group block overflow-hidden rounded-[1.75rem] border border-cyan-300/20 bg-black/40 transition hover:border-cyan-100/50"
+                  >
+                    <div className="relative">
+                      <img
+                        src={'/Cyberpunk/cyberpunk-2020-review-header-990x557.webp'}
+                        alt="Cyberpunk 2020 download card"
+                        className="w-full transition duration-300 group-hover:scale-[1.015]"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-5 py-4">
+                        <p className="text-xs uppercase tracking-[0.28em] text-cyan-100/70">
+                          Cyberpunk 2020
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                  <a
+                    href={NIGHT_CITY_PATH}
+                    download
+                    className="group block overflow-hidden rounded-[1.75rem] border border-white/15 bg-black/40 transition hover:border-white/35"
+                  >
+                    <div className="relative">
+                      <img
+                        src={'/nightcity.PNG'}
+                        alt="Night City download card"
+                        className="w-full transition duration-300 group-hover:scale-[1.015]"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-5 py-4">
+                        <p className="text-xs uppercase tracking-[0.28em] text-white/75">
+                          Night City
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
                 <p className="mt-4 text-sm text-white/65">
                   Plug your keyboard into the face and grab yourself a copy choombatta!
                 </p>
