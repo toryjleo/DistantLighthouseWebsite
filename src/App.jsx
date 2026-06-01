@@ -822,15 +822,6 @@ function App() {
               </span>
               <div className="invisible absolute left-1/2 top-full z-50 w-44 -translate-x-1/2 rounded-xl border border-white/15 bg-black/90 p-2 text-[10px] opacity-0 backdrop-blur transition group-hover:visible group-hover:opacity-100 sm:text-[11px]">
                 <NavLink
-                  to="/"
-                  end
-                  className={({ isActive }) =>
-                    `block rounded-md px-3 py-2 text-left transition ${isActive ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/10 hover:text-white'}`
-                  }
-                >
-                  Landing Page
-                </NavLink>
-                <NavLink
                   to="/services"
                   className={({ isActive }) =>
                     `block rounded-md px-3 py-2 text-left transition ${isActive ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/10 hover:text-white'}`
