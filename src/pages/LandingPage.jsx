@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { getNewsletterPosts } from '../data/newsletter'
 
-export default function About() {
+export default function LandingPage() {
   const latestPost = getNewsletterPosts()[0]
 
   return (

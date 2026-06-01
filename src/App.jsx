@@ -3,9 +3,10 @@ import { motion } from 'framer-motion'
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import WaterShader from './components/Water/WaterShader'
 import ParticleEdges from './components/Bubbles/ParticleEdges'
-import About from './pages/About'
+import LandingPage from './pages/LandingPage'
 import Projects from './pages/Projects'
 import Services from './pages/Services'
+import Company from './pages/Company'
 import Contact from './pages/Contact'
 import Quote from './pages/Quote'
 import Newsletter from './pages/Newsletter'
@@ -14,8 +15,6 @@ import JobEstimator from './pages/JobEstimator'
 import CyberpunkLedger from './pages/CyberpunkLedger'
 
 const navItems = [
-  { to: '/', label: 'About', end: true },
-  { to: '/services', label: 'Services' },
   { to: '/projects', label: 'Projects' },
   { to: '/newsletter', label: 'Newsletter' },
   { to: '/contact', label: 'Contact' },
@@ -34,6 +33,9 @@ function ScrollToTop() {
 }
 
 function App() {
+  const { pathname } = useLocation()
+  const aboutDropdownActive = ['/', '/landing-page', '/services', '/company', '/about'].includes(pathname)
+
   const [shaderDebug, setShaderDebug] = useState({
     paused: false,
     showUV: false,
@@ -774,7 +776,7 @@ function App() {
           </button>
         </div>
       )}
-      <header className="navbar-scene fixed left-0 right-0 top-0 z-40 h-36 overflow-hidden sm:h-40">
+      <header className="navbar-scene fixed left-0 right-0 top-0 z-40 h-36 overflow-visible sm:h-40">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-24">
           <WaterShader
             paused={shaderDebug.paused}
@@ -812,6 +814,40 @@ function App() {
             </NavLink>
           </div>
           <nav className="mt-[32px] grid grid-cols-3 items-center justify-center gap-x-3 gap-y-2 px-2 text-[10px] uppercase tracking-[0.18em] text-white/80 sm:mt-0 sm:flex sm:flex-wrap sm:gap-4 sm:text-[12px] sm:tracking-[0.22em]">
+            <div className="group relative text-center leading-tight">
+              <span
+                className={`cursor-default transition ${aboutDropdownActive ? 'text-white' : 'text-white/60 group-hover:text-white'}`}
+              >
+                About
+              </span>
+              <div className="invisible absolute left-1/2 top-full z-50 w-44 -translate-x-1/2 rounded-xl border border-white/15 bg-black/90 p-2 text-[10px] opacity-0 backdrop-blur transition group-hover:visible group-hover:opacity-100 sm:text-[11px]">
+                <NavLink
+                  to="/"
+                  end
+                  className={({ isActive }) =>
+                    `block rounded-md px-3 py-2 text-left transition ${isActive ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/10 hover:text-white'}`
+                  }
+                >
+                  Landing Page
+                </NavLink>
+                <NavLink
+                  to="/services"
+                  className={({ isActive }) =>
+                    `block rounded-md px-3 py-2 text-left transition ${isActive ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/10 hover:text-white'}`
+                  }
+                >
+                  Services
+                </NavLink>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    `block rounded-md px-3 py-2 text-left transition ${isActive ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/10 hover:text-white'}`
+                  }
+                >
+                  Company
+                </NavLink>
+              </div>
+            </div>
             {navItems.map((item) => (
               <NavLink
                 key={item.to}
@@ -830,8 +866,11 @@ function App() {
 
       <main className="pt-36 px-5 sm:px-8 lg:px-12 sm:pt-40">
         <Routes>
-          <Route path="/" element={<About />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/landing-page" element={<LandingPage />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/about" element={<Company />} />
+          <Route path="/company" element={<Company />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/newsletter/:slug" element={<NewsletterPost />} />
@@ -839,7 +878,7 @@ function App() {
           <Route path="/quote" element={<Quote />} />
           <Route path="/projects/job-estimator" element={<JobEstimator />} />
           <Route path="/projects/cyberpunk-ledger" element={<CyberpunkLedger />} />
-          <Route path="*" element={<About />} />
+          <Route path="*" element={<LandingPage />} />
         </Routes>
       </main>
 
